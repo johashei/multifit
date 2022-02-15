@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import numba 
 from scipy.special import erfc
 from iminuit import Minuit
 from iminuit.cost import LeastSquares

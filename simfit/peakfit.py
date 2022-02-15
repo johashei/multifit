@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 import sys
 sys.path.insert(0,'../GammaPeakFit')
 import fitting as ft
