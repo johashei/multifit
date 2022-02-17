@@ -136,7 +136,10 @@ with open(f"{savename}.txt",'w') as outfile:
     print(m.covariance, file=outfile)
     outfile.close()
 
-print(f"Fit complete. Remember to check the Migrad output in {savename}.txt.\n")
+if m.valid():
+    print(f"Fit complete. Remember to check the Migrad output in {savename}.txt.\n")
+else:
+    raise UserWarning(f"Fit failed. Check the Migrad output in {savename}.txt for specifics.\n")
 
 # Write peak areas to file
 fmt = '\t'.join(['%8.3f '] + 2*N_peaks*['%10.4f '])
