@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 sys.path.insert(0,'../GammaPeakFit')
-import fitting as ft
+from .fitting import Spectrum, MakeChi2
 from iminuit import Minuit
 from iminuit.util import describe
 from pathlib import Path
@@ -69,8 +69,8 @@ print(function_string)
 exec(function_string)
 
 
-spectra = [ft.Spectrum(file) for file in files]
-Fit = ft.Fit(spectra)
+spectra = [Spectrum(file) for file in files]
+Fit = MakeChi2(spectra)
 # Create the combined chi2 minimisation function. The list indicates which parameters should be fitted individually for each spectrum.
 # Any change in this list must be reflected in the 'args' dict in the Plotting Loop.
 def listall(param: str):

@@ -46,7 +46,7 @@ class Spectrum(object):
 
 
 
-class Fit(object):
+class MakeChi2(object):
     """
     Define fit function;
     Create combined chi squared function for fitting multiple spectra simultaneously; <- only does this so far

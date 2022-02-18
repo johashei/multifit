@@ -11,4 +11,4 @@ d: bug fixes
 """
 
 from .fitting import *
-from peakfit import *
+from .peakfit import *

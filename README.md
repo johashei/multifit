@@ -4,7 +4,7 @@ coming soon
 
 The goal of Simfit is to provide a convenient interface calculating fits with shared parameters over multiple data sets. 
 
-It is develloped for fitting peaks in $\gamma$-spectra. 
+It is develloped for fitting peaks in γ-spectra. 
 
 
 
