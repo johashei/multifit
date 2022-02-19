@@ -2,7 +2,7 @@
 0setup.py
 
 # System 
-*.DS_Dtore
+*.DS_Store
 
 # Distribution / packaging
 .Python

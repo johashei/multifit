@@ -6,10 +6,10 @@ The actual fitting is all done using the `iminuit` package, and I recommend that
 
 ## Installation
 
-Install from PyPi repository (recommended)
+~~Install from PyPi repository (recommended)~~ Coming soon
 
 ```
-pip install simfit
+
 ```
 
 To install the developement version, clone this repository, `cd` to its root directory and run
@@ -36,7 +36,7 @@ If the `get_input` method is called, the program will attempt to read certain ar
 `savename`: the location to save the results, with no file extention. 
 
 Once the fit is complete, the results are contained in the Minuit object `UI.m`. See the _iminuit_ documentation for information on how to extract it.
-Working examples are given in [](./doc/examples/).
+Working examples are given in [doc/examples/](./doc/examples/).
 
 #### The default configuration
 
@@ -44,7 +44,7 @@ In the default configuration, *simfit* can fit any number of peaks using Gaussia
 
 #### Configuring the fit manually
 
-Each step of the fit, as well as the variables involved, can be accessed through the `UI` class. The following contains a description of some variables you may want to change. For more details, see [](./doc/reference.md)
+Each step of the fit, as well as the variables involved, can be accessed through the `UI` class. The following contains a description of some variables you may want to change. For more details, see [doc/reference.md](./doc/reference.md)
 
 <details>
 <summary>clik to expand</summary>
