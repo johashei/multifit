@@ -23,8 +23,7 @@ class UI(object):
         print("\nFit function:")
         print(self.function_string)
         exec(self.function_string)
-        print(describe(eval(self.function_name)))
-        self.make_Chi2(eval(self.function_name))
+        self.make_chi2(eval(self.function_name))
         self.set_initial_values()
         self.fit()
         self.save()
@@ -61,7 +60,7 @@ class UI(object):
     def listall(self,param: str):
         return([f'{param}{i}' for i in range(1,self.N_peaks+1)])
 
-    def make_Chi2(self,fit_function:callable):
+    def make_chi2(self, fit_function: callable):
         self.spectra = [Spectrum(file) for file in self.files]
         self.Fit = MakeChi2(self.spectra)
         # Create the combined chi2 minimisation function. The list indicates which parameters should be fitted individually for each spectrum.
