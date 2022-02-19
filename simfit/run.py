@@ -23,8 +23,7 @@ class UI(object):
         print("\nFit function:")
         print(self.function_string)
         exec(self.function_string)
-        print(describe(eval(self.function_name)))
-        self.make_Chi2(eval(self.function_name))
+        self.make_Chi2()
         self.set_initial_values()
         self.fit()
         self.save()
@@ -61,11 +60,11 @@ class UI(object):
     def listall(self,param: str):
         return([f'{param}{i}' for i in range(1,self.N_peaks+1)])
 
-    def make_Chi2(self,fit_function:callable):
+    def make_Chi2(self):
         self.spectra = [Spectrum(file) for file in self.files]
         self.Fit = MakeChi2(self.spectra)
         # Create the combined chi2 minimisation function. The list indicates which parameters should be fitted individually for each spectrum.
-        self.Chi2 = self.Fit.Chi2(self.interval,fit_function,[*self.listall('A'),'slope','offset'])
+        self.Chi2 = self.Fit.Chi2(self.interval,eval(f'fit_function{self.N_peaks}'),[*self.listall('A'),'slope','offset'])
 
     def set_initial_values(self):
         # Set Initial Values
@@ -87,7 +86,7 @@ class UI(object):
                 self.m.limits[f'A{j}_{i}'] = (0,None) 
         self.m.migrad(iterate=20)
         ## Inform user of fit status.
-        if self.m.valid:
+        if self.m.valid():
             print(f"Fit complete. Remember to check the Migrad output in {self.savename}.txt.\n")
         else:
             raise UserWarning(f"Fit failed. Check the Migrad output in {self.savename}.txt for specifics.\n")
@@ -100,7 +99,7 @@ class UI(object):
             print(self.m.params, file=outfile)
             print(self.m.covariance, file=outfile)
         # Make and save plots of the fits as .eps files
-        for i, (spec, spec_name) in enumerate(zip(self.spectra,self.spec_names)):
+        for i,spec,spec_name in enumerate(zip(self.spectra,self.spec_names)):
             fig,ax = plt.subplots()
             data = spec()
             ax.step(data[0],data[1],where='mid')
@@ -124,12 +123,11 @@ class UI(object):
             args += [f'A{i},s{i},m{i}']
             peaks += [f'y{i} = (A{i}/(s{i}*np.sqrt(2*np.pi)) * np.exp(-0.5*(x-m{i})**2/s{i}**2)) ']
             total += [f'y{i}']
-        self.function_name = f"fit_function{self.N_peaks}"
-        self.function_string = f"""def {self.function_name}(x, slope,offset, {', '.join(args)}):
-    background = slope*x + offset
-    {newlinetab.join(peaks)}
-    total = background + {'+'.join(total)}
-    return(total)
+        self.function_string = f"""def fit_function{self.N_peaks}(x, slope,offset, {', '.join(args)}):
+        background = slope*x + offset
+        {newlinetab.join(peaks)}
+        total = background + {'+'.join(total)}
+        return(total)
         """
 
     def plot_fit2(self,ax,x,spc,kwargs: dict):

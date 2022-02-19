@@ -28,7 +28,6 @@ except IndexError:
 N_peaks = len(m_init)
 
 # Create savename path if it doesn't exist and check for inuse names
-savepath = savename.rpartition('/')[0]
 validname = False
 while not validname:
     if os.path.isfile(f'{savename}.txt'):
@@ -40,6 +39,7 @@ while not validname:
             savename = newname
     else:
         validname = True
+savepath = savename.rpartition('/')[0]
 Path(savepath).mkdir(parents=True,exist_ok=True)
 
 
@@ -136,7 +136,7 @@ with open(f"{savename}.txt",'w') as outfile:
     print(m.covariance, file=outfile)
     outfile.close()
 
-if m.valid():
+if m.valid:
     print(f"Fit complete. Remember to check the Migrad output in {savename}.txt.\n")
 else:
     raise UserWarning(f"Fit failed. Check the Migrad output in {savename}.txt for specifics.\n")
@@ -170,4 +170,3 @@ for i in range(N_spc):
     
     plt.show()
 
-outfile.close()
