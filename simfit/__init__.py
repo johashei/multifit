@@ -10,5 +10,6 @@ c: new feature to existing functionality
 d: bug fixes
 """
 
-from .fitting import *
-from .peakfit import *
+from .fitting import Spectrum, MakeChi2
+from .UI import UI
+#from .peakfit import *
