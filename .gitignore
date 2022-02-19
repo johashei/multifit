@@ -1,3 +1,9 @@
+# Miscellaneous
+0setup.py
+
+# System 
+*.DS_Dtore
+
 # Distribution / packaging
 .Python
 build/
