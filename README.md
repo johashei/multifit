@@ -6,10 +6,10 @@ The actual fitting is all done using the `iminuit` package, and I recommend that
 
 ## Installation
 
-~~Install from PyPi repository (recommended)~~ Coming soon
+Install from PyPi repository (recommended)
 
 ```
-
+pip install multifit
 ```
 
 To install the developement version, clone this repository, `cd` to its root directory and run
