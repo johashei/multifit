@@ -1,6 +1,6 @@
 # multifit
 
-The goal of Simfit is to provide a convenient way of calculating fits with shared parameters over multiple data sets. 
+The goal of Multifit is to provide a convenient way of calculating fits with shared parameters over multiple data sets. 
 
 The actual fitting is all done using the `iminuit` package, and I recommend that you familiarise yourself with [their basic tutorial](https://iminuit.readthedocs.io/en/stable/tutorial/basic_tutorial.html).
 
@@ -44,7 +44,7 @@ In the default configuration, *multifit* can fit any number of peaks using Gauss
 
 #### Configuring the fit manually
 
-Each step of the fit, as well as the variables involved, can be accessed through the `UI` class. The following contains a description of some variables you may want to change. For more details, see [doc/reference.md](./doc/reference.md)
+Each step of the fit, as well as the variables involved, can be accessed through the `UI` class. The following contains a description of some variables you may want to change. For more details, see [doc/reference.md](https://github.com/johashei/multifit/doc/reference.md)
 
 <details>
 <summary>clik to expand</summary>
