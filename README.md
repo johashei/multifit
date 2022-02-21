@@ -6,7 +6,7 @@ The actual fitting is all done using the `iminuit` package, and I recommend that
 
 ## Installation
 
-Install from PyPi repository (recommended)
+Install from PyPI repository (recommended)
 
 ```
 pip install multifit
