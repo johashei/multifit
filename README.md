@@ -1,4 +1,4 @@
-# simfit
+# multifit
 
 The goal of Simfit is to provide a convenient way of calculating fits with shared parameters over multiple data sets. 
 
@@ -23,7 +23,7 @@ pip install .
 Import the `UI` class and initialise it with a list containing the paths to the spectrum files.
 
 ```python
-import simfit.UI as fitUI
+import multifit.UI as fitUI
 paths_to_spectra = ['path/to/spectrum1/spec1.asc', 'path/to/spectrum2/spec2.asc']
 UI = fitUI(paths_to_spectra)
 ```
@@ -40,7 +40,7 @@ Working examples are given in [doc/examples/](./doc/examples/).
 
 #### The default configuration
 
-In the default configuration, *simfit* can fit any number of peaks using Gaussian functions on a linear background. The mean and standard deviation of each peak is constant across all spectra. The peak areas and background parameters are fitted independently for each spectrum.
+In the default configuration, *multifit* can fit any number of peaks using Gaussian functions on a linear background. The mean and standard deviation of each peak is constant across all spectra. The peak areas and background parameters are fitted independently for each spectrum.
 
 #### Configuring the fit manually
 

@@ -1,8 +1,8 @@
 from iminuit.util import describe
 import numpy as np
-import simfit.UI as fitUI
+import multifit.UI as fitUI
 
-# Advanced use of the simfit package.
+# Advanced use of the multifit package.
 # NOTE: Not quite finished yet
 
 # A list of spectrum files. See documentation for format details. 

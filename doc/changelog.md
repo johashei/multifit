@@ -2,7 +2,8 @@
 
 ### Version 1.0.0.0
 
-- Simfit is now available from the PyPi repository
+- Changed the name to multifit
+- Multifit is now available from the PyPi repository
 - Moved the contents of `peakfit.py` to the new `UI` class
 - Wrote a basic user guide
 - Added a simple example

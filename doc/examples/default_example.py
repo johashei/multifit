@@ -1,6 +1,6 @@
-import simfit.UI as fitUI
+import multifit.UI as fitUI
 
-# The simplest use of the simfit package.
+# The simplest use of the multifit package.
 
 # A list of spectrum files. See documentation for format details. 
 path = './example_spectra/Set1/'
