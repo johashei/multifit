@@ -21,12 +21,12 @@ class Spectrum(object):
     
     def __call__(self,energy_range=None,channel_range=None):
         counts_err = np.sqrt(self.counts) # Assumes poisson distributed counting process
-        if energy_range == None:
-            if channel_range == None: 
+        if energy_range is None:
+            if channel_range is None: 
                 return_range = [None,None]
             else:
                 return_range = channel_range
-        elif channel_range == None: 
+        elif channel_range is None: 
            return_range = (np.array(energy_range)/self.keV_per_channel).astype(int)
         else:
             raise ValueError("Specify energy range or channel range, not both.")
