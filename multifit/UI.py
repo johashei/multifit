@@ -5,6 +5,7 @@ import numpy as np
 import os
 from pathlib import Path
 import sys
+import warnings
 
 from .fitting import Spectrum, MakeChi2
 
@@ -89,7 +90,7 @@ class UI(object):
         if self.m.valid:
             print(f"Fit complete. Remember to check the Migrad output in {self.savename}.txt.\n")
         else:
-            raise UserWarning(f"Fit failed. Check the Migrad output in {self.savename}.txt for specifics.\n")
+            warnings.warn(f"Fit failed. Check the Migrad output in {self.savename}.txt for specifics.\n", category=UserWarning)
 
     def save(self, display=True):
         # Write Migrad output to .txt file
