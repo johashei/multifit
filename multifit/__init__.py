@@ -1,4 +1,4 @@
-__version__ = "1.0.0.3"
+__version__ = "1.1.0.1"
 __author__ = "Johannes Sørby Heines"
 
 """
@@ -12,4 +12,4 @@ d: bug fixes
 
 from .fitting import Spectrum, MakeChi2
 from .UI import UI
-#from .peakfit import *
+from .PlotSpectra import PlotSpectra
