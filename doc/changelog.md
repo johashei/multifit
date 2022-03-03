@@ -3,14 +3,20 @@
 #### Version legend:
 
  a.b.c.d
- 
+
  a: major release
- 
+
  b: new functionality added
- 
+
  c: new feature to existing functionality
- 
- d: bug fixes
+
+ d: bug fixes (not generally listed in the changelog)
+
+---
+
+### Version 1.0.1.0
+
+- small change to `UI.make_chi2` to make it easier to customise
 
 ---
 

@@ -1,4 +1,4 @@
-__version__ = "1.0.0.5"
+__version__ = "1.0.1.0"
 __author__ = "Johannes Sørby Heines"
 
 """

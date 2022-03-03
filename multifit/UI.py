@@ -15,6 +15,8 @@ class UI(object):
         self.files = files
         self.N_spec = len(files)
         self.spec_names = [file.rpartition('/')[-1].rpartition('.')[0] for file in self.files]
+        self.spectra = [Spectrum(file) for file in self.files]
+        self.Fit = MakeChi2(self.spectra) # This only initialises the MakeChi2 class, no chi2 is made yet.
 
     def __call__(self):
         # Default usage, made for the RDDS measurements with reasonably clean spectra.
@@ -62,8 +64,6 @@ class UI(object):
         return([f'{param}{i}' for i in range(1,self.N_peaks+1)])
 
     def make_chi2(self, fit_function: callable):
-        self.spectra = [Spectrum(file) for file in self.files]
-        self.Fit = MakeChi2(self.spectra)
         # Create the combined chi2 minimisation function. The list indicates which parameters should be fitted individually for each spectrum.
         self.Chi2 = self.Fit.Chi2(self.interval,fit_function,[*self.listall('A'),'slope','offset'])
 
