@@ -29,7 +29,7 @@ class UI(object):
         self.make_chi2(eval(self.function_name))
         self.set_initial_values()
         self.fit()
-        self.save()
+        self.save(plotter=self.plot_fit2)
 
     def get_input(self):
         # Get fit interval, approximate peak positions and save location from user.
@@ -92,7 +92,7 @@ class UI(object):
         else:
             warnings.warn(f"Fit failed. Check the Migrad output in {self.savename}.txt for specifics.\n", category=UserWarning)
 
-    def save(self, display=True):
+    def save(self, plotter: callable, display=True):
         # Write Migrad output to .txt file
         with open(f"{self.savename}.txt",'w') as outfile:
             print(f"{self.interval = } \t {self.m_init = }\n", file=outfile)
@@ -106,7 +106,7 @@ class UI(object):
             ax.step(data[0],data[1],where='mid')
             x = np.linspace(self.interval[0],self.interval[1],300)
             kwargs = dict(zip(self.m.parameters[:],self.m.values[:]))
-            self.plot_fit2(ax,x,i,kwargs)
+            plotter(ax,x,i,kwargs)
             ax.set_xlim(self.interval)
             ax.set_xlabel("Energy [keV]")
             ax.set_ylabel("counts per 0.5 keV")
@@ -149,3 +149,5 @@ class UI(object):
         data = self.spectra[spc]()
         ax.step(data[0],data[1],where='mid')
         ax.set_ylim(top=1.2*max(total))
+
+
