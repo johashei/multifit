@@ -1,0 +1,35 @@
+{
+	"spectrum":	{
+		"min": 0,
+		"max": 1000,
+		"nbins": 2000
+	},
+	"peaks": [
+		{
+			"area": 1042,
+			"mean": 222,
+			"stddev": 1
+		},
+		{
+			"area": 2001,
+			"mean": 500,
+			"stddev": 2
+		},
+		{
+			"area": 652,
+			"mean": 713,
+			"stddev": 2.2
+		},
+		{
+			"area": 501,
+			"mean": 888,
+			"stddev": 2.9
+		}
+	],
+	"background": {
+		"start": 0,
+		"stop": 1000,
+		"coefficients": [200, -0.01]
+	}
+}
+
