@@ -5,7 +5,7 @@ import sys
 import unittest
 
 #from UI import UI
-#from generate_toy_data import ToySpectrum
+from generate_toy_data import ToySpectrum
 sys.path.insert(0, "lib")
 from rewrite import Spectrum, GaussianMaximumLikelyhood
 from exceptions import *
@@ -15,7 +15,7 @@ class FittingTestCase(unittest.TestCase):
         self.params = {'area':42.9182, 'mean':52.8375, 'stddev':1.7264}
         self.Fitter = GaussianMaximumLikelyhood(number_of_spectra=1, number_of_peaks=1)
         self.x = np.linspace(0, 100, 201)
-        self.y = self.params['area']*norm.pdf(self.x, self.params['mean'], self.params['stddev'])
+        self.y = self.params['area']*0.5*norm.pdf(self.x, self.params['mean'], self.params['stddev'])
 
     def tearDown(self):
         pass

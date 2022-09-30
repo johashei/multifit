@@ -1,5 +1,6 @@
 # Miscellaneous
 0setup.py
+*.ipynb
 
 # System 
 *.DS_Store

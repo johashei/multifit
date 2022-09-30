@@ -1,4 +1,5 @@
-from iminuit import Minuit
+from dataclasses import dataclass
+from iminuit import Minuit, cost
 from iminuit.util import describe
 import matplotlib.pyplot as plt
 from numba_stats import norm
@@ -67,15 +68,48 @@ class Spectrum:
     def scale(self, factor):
         self.counts *= factor
 
+
 class GaussianMaximumLikelihood:
+    """
+    Will not be interacted with directly by the user. Focus on expandablility over ease of input
+    """
+    independent_parameters = ['total_counts', 'slope', 'offset']
+    shared_parameters = ['mean', 'stddev']
+
+
     def __init__(self, number_of_spectra, number_of_peaks):
-        self.number_of_spectra = number_of_spectra
         self.number_of_peaks = number_of_peaks
-    
-    def make_gaussian_cdf(self):
-        args = []
-        peaks = []
+        self.number_of_spectra = number_of_spectra
+        self.parameter_values = {}
+
+    def make_fit_function(self):
+        peak_args = []
         for i in range(self.number_of_peaks):
-            args += [f'area_peak{i}', 'mean_peak{i}', 'stddev_peak{i}']
-            peaks += ['area_peak{i}*norm.cdf(mean_peak{i}, stddev_peak{i})']
-        cdf_string = f''
+            peak_args += [f"total_counts_peak{i}, mean_peak{i}, stddev_peak{i}"]
+        peak_args_string = ", ".join(peak_args)
+        background_args_string = "offset, slope"
+        self.lambda_string = f"lambda x, {background_args_string}, {peak_args_string}: \
+            _polynomial(x, {background_args_string}) + \
+            _gaussian_cdf(x, {peak_args_string})"
+
+    def initialise_independent_parameters(self):
+        for parameter in self.independent_parameters:
+            pass
+    
+    def prepare_fit(self, counts, bin_edges):
+        cost_function = cost.ExtendedBinnedNLL(counts, bin_edges, eval(self.lambda_string, globals(), locals()))
+        self.minuit_object = Minuit(cost_function, **self.parameter_values)
+@dataclass
+class SharedParameter:
+    role: str
+    peak: int
+    name: str
+    
+def _gaussian_cdf(x, *args):
+    ret = np.zeros_like(x)
+    for total_counts, mean, stddev in zip (args[0::3], args[1::3], args[2::3]):
+        ret += total_counts*norm.cdf(x, mean, stddev)
+    return ret
+
+def _polynomial(x, *coefficients):
+    return np.polynomial.polynomial.Polynomial(coefficients)(x)
