@@ -10,6 +10,7 @@ import sys
 import warnings
 
 
+
 from exceptions import *
 import check 
 
@@ -65,6 +66,10 @@ class Spectrum:
     def __add__(self, spectrum2):
         pass
 
+    def get_calibration():
+        # return a function to map the input values to the calibrated values.
+        pass
+
     def scale(self, factor):
         self.counts *= factor
 
@@ -82,12 +87,14 @@ class GaussianMaximumLikelihood:
         self.number_of_spectra = number_of_spectra
         self.parameter_values = {}
 
+    def set_resolution_curve(self, function: callable):
+        pass
+
     def make_fit_function(self):
-        peak_args = []
+        peak_args_string = "stddev_at_0, stddev_increase"
         for i in range(self.number_of_peaks):
-            peak_args += [f"total_counts_peak{i}, mean_peak{i}, stddev_peak{i}"]
-        peak_args_string = ", ".join(peak_args)
-        background_args_string = "offset, slope"
+            peak_args_string += ", total_counts_peak{i}, mean_peak{i}"
+        background_args_string = "background_offset, background_slope"
         self.lambda_string = f"lambda x, {background_args_string}, {peak_args_string}: \
             _polynomial(x, {background_args_string}) + \
             _gaussian_cdf(x, {peak_args_string})"
@@ -99,15 +106,18 @@ class GaussianMaximumLikelihood:
     def prepare_fit(self, counts, bin_edges):
         cost_function = cost.ExtendedBinnedNLL(counts, bin_edges, eval(self.lambda_string, globals(), locals()))
         self.minuit_object = Minuit(cost_function, **self.parameter_values)
+    
+
 @dataclass
-class SharedParameter:
+class Parameter:
     role: str
     peak: int
-    name: str
-    
+    spectrum: int
+
 def _gaussian_cdf(x, *args):
     ret = np.zeros_like(x)
-    for total_counts, mean, stddev in zip (args[0::3], args[1::3], args[2::3]):
+    for total_counts, mean in zip (args[2::2], args[3::2]):
+        stddev = args[0] + args[1]*mean
         ret += total_counts*norm.cdf(x, mean, stddev)
     return ret
 

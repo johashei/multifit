@@ -7,7 +7,7 @@ import unittest
 #from UI import UI
 from generate_toy_data import ToySpectrum
 sys.path.insert(0, "lib")
-from rewrite import Spectrum, GaussianMaximumLikelyhood
+from rewrite import Spectrum, Fitter
 from exceptions import *
 
 class FittingTestCase(unittest.TestCase):
@@ -18,6 +18,10 @@ class FittingTestCase(unittest.TestCase):
         self.y = self.params['area']*0.5*norm.pdf(self.x, self.params['mean'], self.params['stddev'])
 
     def tearDown(self):
+        pass
+
+    def test_correct_lambda_string(self):
+        expected_lambda_string = ""
         pass
 
     def test_fit_result(self):
