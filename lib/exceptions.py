@@ -4,7 +4,7 @@ class BinningError(Exception):
     pass
 
 class RangeError(Exception):
-    pass
+   pass
 
 class MissingSignatureError(Exception):
     def __init__(self, function):
@@ -16,4 +16,5 @@ class MissingSignatureError(Exception):
             does not have a detectable signature."""))
         super().__init__(self.message)
 
-
+class UnequalLengthError(Exception):
+    pass
