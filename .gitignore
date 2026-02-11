@@ -1,37 +1,24 @@
-# Miscellaneous
-0setup.py
+**/__pycache__/
+.DS_Store
+
+/dist
+/build
+/env
+/doc/example
+
 *.ipynb
+*.ipynb_checkpoints
+*.pytest_cache
+*.egg-info
 
-# System 
-*.DS_Store
+temp
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+*.tex
+*.aux
+*.fls
+*.log
+*.gz
+*.fdb_latexmk
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-
+*.pdf
+*.pdf_tex

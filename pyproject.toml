@@ -1,6 +1,65 @@
 [build-system]
-requires = [
-    "setuptools>=42",
-    "wheel"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyrdds"
+dynamic = ["version"]
+description = 'fit multiple gamma spectra simultaneously'
+requires-python = ">=3.10"
+dependencies = [
+	"attrs",
+	"docopt-ng",
+	"iminuit",
+	"matplotlib",
+	"numba_stats",
+	"numpy",
+	"pyyaml",
+	"pytest",
 ]
-build-backend = "setuptools.build_meta"
+authors = [
+	{ name = "Johannes Sørby Heines", email = "j.s.heines@protonmail.ch" },
+]
+keywords = [
+	"RDDS",
+	"gamma spectroscopy",
+	"fitting",
+	"minuit",
+]
+classifiers = [
+	"Development Status :: 4 - Beta",
+	"Programming Language :: Python :: 3.11",
+	"Intended Audience :: Science/Research",
+	"Topic :: Scientific/Engineering :: Physics",
+]
+
+[tool.hatch.version]
+path = "./src/pyrdds/__about__.py"
+
+[project.scripts]
+pyrdds-fit-spectra = "pyrdds.multifit.fit_spectra:main"
+pyrdds-plot-spectra = "pyrdds.plotting.plot_spectra:main"
+pyrdds-plot-results = "pyrdds.plotting.plot_results:main"
+pyrdds-plot-coinc = "pyrdds.plotting.plot_coincidences:main"
+
+[tool.hatch.build.target.sdist]
+exclude = [
+	"/.github",
+	"/doc",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pyrdds"]
+
+[tool.hatch.envs.edge]
+python = "3.14"
+dependencies = [
+	"cmcrameri",
+	"pandas",
+	"pytest",
+]
+
+[tool.pytest.ini_options]
+adopts = [
+	"--impoert-mode=importlib",
+]
