@@ -36,7 +36,7 @@ from .model import Model
 from .data import Spectrum
 from .fitter import Fitter
 from .interface import load_config, fetch_spectra, import_cdf
-from ..loggedminuit import LoggedMinuit
+from .loggedminuit import LoggedMinuit
 
 
 def main():

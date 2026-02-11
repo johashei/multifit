@@ -3,10 +3,10 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "pyrdds"
+name = "multifit"
 dynamic = ["version"]
 description = 'fit multiple gamma spectra simultaneously'
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
 	"attrs",
 	"docopt-ng",
@@ -34,13 +34,13 @@ classifiers = [
 ]
 
 [tool.hatch.version]
-path = "./src/pyrdds/__about__.py"
+path = "./src/multifit/__about__.py"
 
 [project.scripts]
-pyrdds-fit-spectra = "pyrdds.multifit.fit_spectra:main"
-pyrdds-plot-spectra = "pyrdds.plotting.plot_spectra:main"
-pyrdds-plot-results = "pyrdds.plotting.plot_results:main"
-pyrdds-plot-coinc = "pyrdds.plotting.plot_coincidences:main"
+multifit-fit-spectra = "multifit.fit_spectra:main"
+multifit-plot-spectra = "multifit.plotting.plot_spectra:main"
+multifit-plot-results = "multifit.plotting.plot_results:main"
+multifit-plot-coinc = "multifit.plotting.plot_coincidences:main"
 
 [tool.hatch.build.target.sdist]
 exclude = [
@@ -49,14 +49,15 @@ exclude = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/pyrdds"]
+packages = ["src/multifit"]
 
-[tool.hatch.envs.edge]
-python = "3.14"
+[tool.hatch.envs.dev]
+python = "3.11"
 dependencies = [
 	"cmcrameri",
 	"pandas",
 	"pytest",
+	"ipython"
 ]
 
 [tool.pytest.ini_options]
