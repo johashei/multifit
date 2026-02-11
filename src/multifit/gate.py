@@ -1,19 +1,18 @@
 #!/usr/bin/python3
+"""
+Usage: multifit gate CONFIG [options]
 
-"""plot_coincidences.
+    -h --help           Print this help screen and exit.
+    -e --export PATH    Default export location for gated spectra.
 
-Usage:
-    plot_coincidences <config> [options]
-    plot_coincidences (-h | --help)
+Plotting options:
+    -c --color MAP      Name of the colormap to use. [default: cmc.lajolla_r]
+    -x --xlabel LABEL   Label for the x axis. [default: value]
+    -y --ylabel LABEL   Label for the y axis. [default: counts per bin]
+    -g --gridsep VALUE  Fixed separation of the gridlines on the y axis.
 
-Options:
-    -h --help             Show this help screen and exit
-    -c --colormap <str>   Name of the colormap to use. [default: cmc.lajolla_r]
-    -x --xlabel <str>     Label for the x axis. [default: value]
-    -y --ylabel <str>     Label for the y axis. [default: counts per bin]
-    -g --gridsep <int>    Fixed separation of the gridlines on the y axis.
-    -e --export <str>     Default export location for gated spectra.
-    --printargs           Print arguments and exit. (For debug purposes.)
+Debugging options:
+    --printargs         Print arguments and exit.
 """
 
 from functools import partial
@@ -41,7 +40,7 @@ def main():
     plt.show()
 
 def make_interactive_plot(args):
-    config = load_config(args['<config>'], check_completeness=False)
+    config = load_config(args['CONFIG'], check_completeness=False)
 
     if not (default_export_path := args['--export']):
         default_export_path = config['data']['directory']
@@ -66,7 +65,7 @@ def make_interactive_plot(args):
     fig, ax = plt.subplots(figsize=(8, 8))
     fig.subplots_adjust(left=0.1, right=0.8, bottom=0.2, top=0.9)
     ax.set_prop_cycle(get_cycler_from_cmap(
-        plt.get_cmap(args['--colormap']), len(spectra), 0.1, 0.9
+        plt.get_cmap(args['--color']), len(spectra), 0.1, 0.9
         ))
     ax.set_yticks([])
     ax.spines[['left', 'right', 'top']].set_visible(False)

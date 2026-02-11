@@ -37,11 +37,7 @@ classifiers = [
 path = "./src/multifit/__about__.py"
 
 [project.scripts]
-multifit-fit-spectra = "multifit.fit_spectra:main"
-multifit-plot-spectra = "multifit.plot_spectra:main"
-multifit-plot-results = "multifit.plot_results:main"
-multifit-plot-coinc = "multifit.plot_coincidences:main"
-multifit-config = "multifit.config:main"
+multifit = "multifit.cli:main"
 
 [tool.hatch.build.target.sdist]
 exclude = [

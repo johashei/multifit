@@ -33,7 +33,7 @@ import numpy as np
 from .model import Model
 from .data import Spectrum
 from .interface import load_config, fetch_spectra, import_cdf
-from .utils import extract_parameters, exponent, approximate_pdf
+from .utils import extract_parameters, exponent
 from .plot_tools import get_cycler_from_cmap
 
 def main():
@@ -169,6 +169,32 @@ def get_offset_from_spectra(spectra: Iterable[Spectrum]):
     yrange = upper - lower
     return int(yrange)
 
+def approximate_pdf(cdf, dx) -> callable:
+    def pdf(x, *args, **kwargs):
+        return (cdf(x + dx/2, *args, **kwargs)
+                - cdf(x - dx/2, *args, **kwargs)
+                )/dx
+    return pdf
+
+def extract_parameters(log: dict, call: int, peak: int, spectrum: int) -> dict:
+    try:
+        return {
+            key.split('_')[0]: float(value) for key, value # njit requires float
+            in log[f'migrad_{call}']['minimum'].items()
+            if key.split('_')[1] in (str(peak), '*')
+                and key.split('_')[2] in (str(spectrum), '*')
+            }
+    except IndexError:
+        # unique parameters formatted as x, not as x_*_*
+        parameters = {}
+        for key, value in log[f'migrad_{call}']['minimum'].items():
+            splitkey = key.split('_')
+            if len(splitkey) == 1:
+                parameters[splitkey[0]] = float(value)
+            elif (splitkey[1] in (str(peak), '*')
+                  and splitkey[2] in (str(spectrum), '*')):
+                parameters[splitkey[0]] = float(value)
+        return parameters
 
 if __name__ == '__main__':
     main()

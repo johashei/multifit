@@ -1,28 +1,24 @@
 #!/usr/bin/python3
 
-"""fit_spectra.
+"""
+Usage: multifit fit CONFIG LOG (--new | --overwrite | --append)
+                    [--tries N] [--strategy N] [--minos PARAM...]
+                    [--retries N] [--printargs]
 
-Usage:
-    fit_spectra <config> <log> (--new | --overwrite | --append)
-                [--tries <int>] [--strategy <int>] [--minos <str>...]
-                [--retries <int>] [--printargs]
-    fit_spectra (-h | --help)
-
-Options:
     -h --help           Show this help screen and exit.
     --new               Write a new log file. Will raise an error if the
                         file already exists.
     --overwrite         Overwrite previous log file.
     --append            Append to previous log file.
-    --tries <int>       Number of times to run the migrad minimiser before
+    --tries N           Number of times to run the migrad minimiser before
                         giving up. [default: 5]
-    --strategy <int>   Strategy to use for the minimisation. Choices are
+    --strategy N        Strategy to use for the minimisation. Choices are
                         0 (fast), 1,  2 (careful). See iminuit documentation
                         for details. [default: 1]
-    --minos <str>...    Calculate minos errors for the given parameters, or
+    --minos PARAM...    Calculate minos errors for the given parameters, or
                         use 'all' for all parameters (not usually necessary).
                         This can take several minutes.
-    --retries <int>     Rerun migrad this number of times after a minimum
+    --retries N         Rerun migrad this number of times after a minimum
                         has been found. [default: 0]
     --printargs         Print arguments and exit. (For debug purposes.)
 """
@@ -45,7 +41,7 @@ def main():
         print(args)
         sys.exit()
 
-    config = load_config(args['<config>'])
+    config = load_config(args['CONFIG'])
     fitter = Fitter.from_config(config)
 
     if args['--new']:
@@ -61,7 +57,7 @@ def main():
         pass
     else:
         fitter.mask = eval(mask)
-    with open(args['<log>'], openmode) as logfile:
+    with open(args['LOG'], openmode) as logfile:
         run_fit(args, fitter, logfile)
 
 def run_fit(args, fitter, logfile):
