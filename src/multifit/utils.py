@@ -40,12 +40,6 @@ def extract_parameters(log: dict, call: int, peak: int, spectrum: int) -> dict:
                 parameters[splitkey[0]] = float(value)
         return parameters
 
-def build_model(config: dict) -> Model:
-    return Model(
-        import_cdf(config),
-        spectrum_params=config['model']['spectrum_params'],
-        peak_params=config['model']['peak_params'])
-
 def bin_edges_iff_equal(spectra: Iterable[Spectrum]):
     bin_edges = spectra[0].bin_edges
     for i, spectrum in enumerate(spectra[1:]):
