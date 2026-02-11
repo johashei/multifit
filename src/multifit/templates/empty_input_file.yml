@@ -1,0 +1,34 @@
+# This is an emptly config for multifit.
+#
+# Find more information about YAML syntax here:
+# <https://yamline.com/tutorial/>
+
+---
+data:
+  directory: # path/to/your/files/
+  files:
+    - # data_file_1  # These can be in ascii or npy format
+    - # data_file_2
+    - # ...
+  column: # which column of the data file contains the counts, numbered from 0
+  delimiter: # column delimiter in the data file
+  bin_width: # bin width of the data
+model:
+  module: # path/to/python/file.py
+  function: # name of function to fit
+  spectrum_params:
+    - <parameter_name>     # parameters with the same value for all peaks in a spectrum
+    - # ...
+  peak_params:
+    - <parameter_name>     # parameters with the same value for all peaks of the same
+    - # ...                # number, across spectra.
+fit:
+  range: [<min>, <max>] # limits of the fit
+  number_of_peaks: # how many peaks to fit. Each will be fitted by the given function.
+  parameter_ranges:
+    <parameter_name>: [<min>, <max>]   # Ranges within which each parameter is allowed
+    # ...                              # to vary
+  initial_values:
+    <parameter_name>: <value>          # Initial value for each parameter
+    # ...
+...
