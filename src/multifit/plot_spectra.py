@@ -23,10 +23,10 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Cursor
 import numpy as np
 
-from ..data import Spectrum
-from ..interface import load_config, fetch_spectra
-from ..utils import exponent
-from .utils import (
+from .data import Spectrum
+from .interface import load_config, fetch_spectra
+from .utils import exponent
+from .plot_tools import (
     get_cycler_from_cmap,
     get_offset_from_spectra,
     plot_spectra,

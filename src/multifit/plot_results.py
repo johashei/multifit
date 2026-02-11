@@ -30,11 +30,11 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator, FuncFormatter
 import numpy as np
 
-from ..multifit.model import Model
-from ..multifit.data import Spectrum
-from ..multifit.interface import load_config, fetch_spectra, import_cdf
-from ..multifit.utils import extract_parameters, exponent, approximate_pdf
-from .utils import get_cycler_from_cmap
+from .model import Model
+from .data import Spectrum
+from .interface import load_config, fetch_spectra, import_cdf
+from .utils import extract_parameters, exponent, approximate_pdf
+from .plot_tools import get_cycler_from_cmap
 
 def main():
     args = docopt(__doc__)

@@ -6,8 +6,8 @@ from matplotlib.ticker import MaxNLocator, FuncFormatter
 from matplotlib.widgets import Slider, Cursor
 import numpy as np
 
-from ..data import Spectrum
-from ..utils import exponent
+from .data import Spectrum
+from .utils import exponent
 
 @define
 class InteractivePlot:

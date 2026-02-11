@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from .data import Spectrum
-from .plotting.plotter import IntervalSelectorGUI, plot_spectra
+from .plotter import IntervalSelectorGUI
 from .model import Model
 from .utils import bin_edges_iff_equal
 from .interface import fetch_spectra

@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import SpanSelector, Button
 import numpy as np
 
-from ..data import Spectrum
-from ..utils import bin_edges_iff_equal
-from .utils import get_cycler_from_cmap
+from .data import Spectrum
+from .utils import bin_edges_iff_equal
+from .plot_tools import get_cycler_from_cmap
 
 
 class IntervalSelectorGUI:
