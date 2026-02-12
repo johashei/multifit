@@ -3,7 +3,7 @@
 """plot_results.
 
 Usage:
-    plot_results <config> <log> [options]
+    plot_results CONFIG LOG [options]
     plot_results (-h | --help)
 
 Options:
@@ -32,8 +32,8 @@ import numpy as np
 
 from .model import Model
 from .data import Spectrum
-from .interface import load_config, fetch_spectra, import_cdf
-from .utils import extract_parameters, exponent
+from .input import load_config, fetch_data, import_cdf
+from .utils import exponent
 from .plot_tools import get_cycler_from_cmap
 
 def main():
@@ -42,20 +42,20 @@ def main():
         print(args)
         sys.exit()
 
-    config = load_config(args['<config>'])
-    with open(args['<log>'], 'r') as infile:
+    config = load_config(args['CONFIG'])
+    with open(args['LOG'], 'r') as infile:
         log = json.load(infile)
 
     # Modulus allows for reverse indexing
     call = int(args['--callnumber']) % (log['total_calls']['migrad'] + 1)
-    spectra = fetch_spectra(config, 0)
-    bin_width = config['data']['bin_width']
-    pdf = approximate_pdf(import_cdf(config), dx=1)
+    spectra = fetch_data(config.data, cls=Spectrum)
+    bin_width = config.data.bin_width
+    pdf = approximate_pdf(import_cdf(config.model.module, config.model.function), dx=1)
     offset, ygridsep = define_grid(args['--offset'], spectra)
     x = np.linspace(
-        config['fit']['range'][0],
-        config['fit']['range'][-1],
-        int((config['fit']['range'][-1] - config['fit']['range'][0])/0.2)
+        config.fit.range[0],
+        config.fit.range[-1],
+        int((config.fit.range[-1] - config.fit.range[0])/0.2)
         )
 
     fig, ax = plt.subplots(figsize=(5, 8))
@@ -68,7 +68,7 @@ def main():
     for i in range(len(spectra)):
         baseline = i*offset
         sum_components = 0
-        for j in range(config['fit']['number_of_peaks']):
+        for j in range(config.fit.number_of_peaks):
             parameters = extract_parameters(
                 log,
                 call=call,
@@ -76,7 +76,6 @@ def main():
                 spectrum=i)
             components = (
                 pdf(x, return_components=True, **parameters)*bin_width
-                #/config['fit']['number_of_peaks']  # STUPID STUPID STUPID Don't correct for stuff in the plot FIND THE SOURCE!
                 )
             sum_components += np.sum(components, axis=1)
             if j == 0 or np.sum(components[:, 0]) != 0:

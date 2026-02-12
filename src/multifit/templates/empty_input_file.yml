@@ -22,8 +22,12 @@ model:
   peak_params:
     - <parameter_name>     # parameters with the same value for all peaks of the same
     - # ...                # number, across spectra.
+  kwargs:
+    - <keyword>: <value>   # additional keyword arguments of the model function wich
+    - #...                 # should not be included in the fit. Often includes fitrange
 fit:
   range: [<min>, <max>] # limits of the fit
+  mask: # A boolean expression which evaluates to true for all bins used in the fit
   number_of_peaks: # how many peaks to fit. Each will be fitted by the given function.
   parameter_ranges:
     <parameter_name>: [<min>, <max>]   # Ranges within which each parameter is allowed

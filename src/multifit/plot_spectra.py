@@ -3,7 +3,7 @@
 """plot_spectra.
 
 Usage:
-    plot_spectra <config> [options]
+    plot_spectra CONFIG [options]
     plot_spectra (-h | --help)
 
 Options:
@@ -24,7 +24,7 @@ from matplotlib.widgets import Slider, Cursor
 import numpy as np
 
 from .data import Spectrum
-from .interface import load_config, fetch_spectra
+from .input import load_config, fetch_spectra
 from .utils import exponent
 from .plot_tools import (
     get_cycler_from_cmap,
@@ -45,10 +45,10 @@ def main():
     plt.show()
 
 def make_interactive_plot(args):
-    config = load_config(args['<config>'], check_completeness=False)
+    config = load_config(args['CONFIG'], check_completeness=False)
 
     spectra = fetch_spectra(config, 0)
-    bin_width = config['data']['bin_width']
+    bin_width = config.data.bin_width
 
     max_offset = get_offset_from_spectra(spectra)
     offset = max_offset/2

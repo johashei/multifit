@@ -12,23 +12,6 @@ from .utils import bin_edges_iff_equal
 from .plot_tools import get_cycler_from_cmap
 
 
-class IntervalSelectorGUI:
-    def __init__(self, spectra: Iterable[Spectrum]):
-        """"""
-        self.spectra = spectra
-        # If the spectra have different bin edges, raise ValueError:
-        self.bin_edges = bin_edges_iff_equal(spectra)
-
-    def run_widget(self):
-        """"""
-        fig, axes = plot_spectra(self.spectra)
-        fig.subplots_adjust(top=0.9)
-        span = SpanSelector(
-            axes[0], self.onselect, 'horizontal',
-            useblit=True,
-            interactive=True,
-            snap_values=self.bin_edges)
-
 def plot_spectra(
         spectra: Iterable[Spectrum], *,
         xlabel: str = 'Value',

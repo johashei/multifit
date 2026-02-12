@@ -6,10 +6,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from .data import Spectrum
-from .plotter import IntervalSelectorGUI
 from .model import Model
 from .utils import bin_edges_iff_equal
-from .interface import fetch_spectra
+from .input import Config, fetch_data
 
 
 class Fitter:
@@ -30,16 +29,16 @@ class Fitter:
         self._parameter_limits = {}
 
     @classmethod
-    def from_config(cls, config: dict) -> Self:
-        spectra = fetch_spectra(config, 0)
-        model = Model.from_config(config)
+    def from_config(cls, config: Config) -> Self:
+        spectra = fetch_data(config.data, cls=Spectrum)
+        model = Model.from_config(config.model)
         instance = cls(
             spectra=spectra,
             peak_model=model,
-            number_of_peaks=config['fit']['number_of_peaks'])
-        instance.range = config['fit']['range']
-        instance.parameter_values = config['fit']['initial_values']
-        instance.parameter_limits = config['fit']['parameter_ranges']
+            number_of_peaks=config.fit.number_of_peaks)
+        instance.range = config.fit.range
+        instance.parameter_values = config.fit.initial_values
+        instance.parameter_limits = config.fit.parameter_ranges
         return instance
 
     @property
@@ -68,7 +67,7 @@ class Fitter:
         """
         #lower_bin_edge, upper_bin_edge = interval
         lower_bin_edge = interval[0]
-        upper_bin_edge = interval[-1] # allows for intermediate values used by the cdf
+        upper_bin_edge = interval[-1]
         idx_min = np.searchsorted(self.bin_edges, lower_bin_edge, 'left')
         idx_max = np.searchsorted(self.bin_edges, upper_bin_edge, 'right')
         self.edge_range_idx = np.s_[idx_min:idx_max]
@@ -106,12 +105,6 @@ class Fitter:
                 ))
         return values
 
-    def set_graphical_range(self):
-        """Set the fitting range graphically."""
-        selector = IntervalSelectorGUI(self.spectra)
-        selector.run_widget()
-        self.range = selector.interval
-
     def make_cost_function(self):
         """Combine the individual CDFs into a shared cost function."""
         for spectrum_number, spectrum in enumerate(self.spectra):
@@ -125,6 +118,8 @@ class Fitter:
             self.loglikelihood += component
 
     def sum_cdfs(self, spectrum_number) -> callable:
+        """Sum the cdfs for all peaks in a spectrum to a single cdf.
+        """
         signature = {}
         cdfs = [0]*self.number_of_peaks
         for peak_number, i in enumerate(range(self.number_of_peaks)):
@@ -133,17 +128,13 @@ class Fitter:
                 spectrum_number=spectrum_number)
             signature |= cdfs[i]._parameters
 
-#        for i, (key, value) in enumerate(signature.items()):
-#            print(f"{i:2d}  {key:10s}: {value}")
-
         def sum_cdf(*args):
-            # args must be positionsal, but I need the names for extraction
+            # args must be positional, but I need the names for extraction
             parameters = {key: arg for key, arg in zip(signature, args)}
             result = 0
             for cdf in cdfs:
                 cdf_args = [parameters[key] for key in cdf._parameters]
                 result += cdf(*cdf_args)
-#            result /= self.number_of_peaks  # normalize the cdf
             return result
 
         sum_cdf._parameters = signature

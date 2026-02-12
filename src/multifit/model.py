@@ -1,3 +1,4 @@
+from functools import partial
 from itertools import chain
 from typing import Self
 
@@ -5,7 +6,7 @@ from iminuit.util import describe, make_with_signature
 import numpy as np
 import pytest
 
-from .interface import import_cdf
+from .input import ModelConfig, import_cdf
 
 class Model:
     """ Manage independent and shared parameters.
@@ -61,13 +62,12 @@ class Model:
 #        print(f"{self.peak_params = }")
 #        print(f"{self.spectrum_params = }")
 
-
     @classmethod
-    def from_config(cls, config: dict) -> Self:
+    def from_config(cls, config: ModelConfig) -> Self:
         return cls(
-            import_cdf(config),
-            spectrum_params=config['model']['spectrum_params'],
-            peak_params=config['model']['peak_params']
+            _set_kwargs(import_cdf(config.module, config.function), config.kwargs),
+            spectrum_params=config.spectrum_params,
+            peak_params=config.peak_params
             )
 
     def make_cdf(
@@ -167,51 +167,11 @@ class Model:
         return [name] + selections
 
 
-
-
-# --------------------------------TESTS---------------------------------
-
-@pytest.fixture
-def simple_model():
-    model = Model(
-            lambda x, a, b, c, d: x > a,
-            spectrum_params=('a', 'd'),
-            peak_params=('b', 'd')
-            )
-    return model
-
-def test_parameter_identification(simple_model):
-    assert simple_model.spectrum_params == set(['a'])
-    assert simple_model.peak_params == set(['b'])
-    assert simple_model.independent_params == set(['c', 'x'])
-    assert simple_model.unique_params == set(['d'])
-
-''' Test for an older version, no longer valid.
-def test_match_params(simple_model):
-    inputs = list(chain.from_iterable(
-        [[f'{y}', f'{y}_1', f'{y}_*', f'{y}_*_1',
-          f'{y}_1_*', f'{y}_1_1', f'{y}_*_*']
-         for y in ['a', 'b', 'c', 'd']]))
-    sn = [1, 2, 3]
-    pn = [4, 5, 6]
-    expected = {}
-    expected.update(dict.fromkeys(
-        ['a', 'a_*', 'a_1_*', 'a_*_*'], [f'a_*_{s}' for s in sn]))
-    expected.update(dict.fromkeys(['a_1', 'a_1_1', 'a_*_1'], ['a_*_1']))
-    expected.update(dict.fromkeys(
-        ['b', 'b_*', 'b_*_1', 'b_*_*'], [f'b_{p}' for p in pn]))
-    expected.update(dict.fromkeys(['b_1', 'b_1_1', 'b_1_*'], ['b_1']))
-    expected.update(dict.fromkeys(
-        ['c', 'c_*', 'c_*_*'], [f'c_{p}_{s}' for p in pn for s in sn]))
-    expected.update(dict.fromkeys(
-        ['c_1', 'c_1_*'], [f'c_1_{s}' for s in sn]))
-    expected['c_*_1'] = [f'c_{p}_1' for p in pn]
-    expected['c_1_1'] = ['c_1_1']
-    expected.update(dict.fromkeys([i for i in inputs if i.startswith('d')], ['d']))
-
-    result = {}
-    for i in inputs:
-        result[i] = simple_model.match_param(
-            i, spectrum_numbers=sn, peak_numbers=pn)
-    assert result == expected
-'''
+def _set_kwargs(original_cdf, kwargs):
+    parameter_order = describe(original_cdf)[1:] # first parameter is x
+    cdf = partial(original_cdf, **kwargs)
+    cdf._parameters = {'x': None} | {
+        par: None for par in parameter_order
+        if par not in kwargs
+        }
+    return cdf

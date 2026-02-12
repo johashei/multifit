@@ -27,7 +27,7 @@ from matplotlib.widgets import Slider, Cursor, RangeSlider, Button, TextBox
 import numpy as np
 
 from .data import CoincidenceMatrix
-from .interface import load_config, fetch_data
+from .input import load_config, fetch_data
 from .plot_tools import plot_spectra, get_cycler_from_cmap, InteractivePlot
 from .plot_tools import get_offset_from_spectra, RangeMarker, eventsoff
 

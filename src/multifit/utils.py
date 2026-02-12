@@ -8,13 +8,8 @@ from iminuit.util import describe
 import numpy as np
 import yaml
 
-from .data import Spectrum
-from .model import Model
-from .interface import import_cdf
 
-
-
-def bin_edges_iff_equal(spectra: Iterable[Spectrum]):
+def bin_edges_iff_equal(spectra: Iterable):
     bin_edges = spectra[0].bin_edges
     for i, spectrum in enumerate(spectra[1:]):
         if (spectrum.bin_edges != bin_edges).any():
