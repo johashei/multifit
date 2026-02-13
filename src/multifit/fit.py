@@ -54,23 +54,39 @@ def main():
     else:
         fitter.mask = eval(mask)  # I trust you know what you're doing
     with open(args['LOG'], openmode) as logfile:
-        run_fit(args, fitter, logfile)
+        minuit = run_fit(
+            fitter,
+            logfile,
+            maxtries=int(args['--tries']),
+            minos=args['--minos'],
+            retries=int(args['--retries']),
+            strategy=int(args['--strategy']),
+            verbose=args['--verbose']
+            )
+    print(minuit)
 
-def run_fit(args, fitter, logfile):
-    if args['--verbose']:
+# Separated from main so fits can be run from another program
+def run_fit(
+        fitter,
+        logfile,
+        maxtries=5,
+        minos=None,
+        retries=0,
+        strategy=1,
+        verbose=False,
+        ):
+    if verbose:
         vprint = partial(print, file=sys.stderr)
     else:
         vprint = lambda _: None  # silent
     minuit = LoggedMinuit(fitter.minuit, logfile)
-    minuit.strategy = int(args['--strategy'])
-    maxtries = int(args['--tries'])
+    minuit.strategy = strategy
     tries = 0
     while not (minuit.valid or tries >= maxtries):
         tries += 1
         vprint("Running migrad ... ")
         minuit.migrad()
         minuit.hesse()
-    retries = int(args['--retries'])
     while retries > 0:
         tries += 1
         retries -= 1
@@ -82,15 +98,15 @@ def run_fit(args, fitter, logfile):
           f"after {tries} tries.\n"
           f"Reduced χ²: {minuit.fmin.reduced_chi2}")
 
-    if minuit.valid and args['--minos']:
-        vprint(f"Calculating minos errors for {args['--minos']}. "
+    if minuit.valid and minos:
+        vprint(f"Calculating minos errors for {minos}. "
               "This can take several minutes.")
-        if args['--minos'][0] == 'all':
+        if minos[0] == 'all':
             minuit.minos()
         else:
             minos_parameters = [
                 key for key in minuit.parameters
-                if key.split('_')[0] in args['--minos']
+                if key.split('_')[0] in minos
                 ]
             minuit.minos(*minos_parameters)
         failed = [key for key, merror in minuit.merrors.items()
@@ -100,7 +116,7 @@ def run_fit(args, fitter, logfile):
         else:
             vprint("Minos succeeded for all parameters.")
         # Print full report from iminuit
-        print(minuit)
+        return minuit
 
 
 if __name__ == '__main__':
