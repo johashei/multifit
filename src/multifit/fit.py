@@ -30,7 +30,9 @@ from docopt import docopt
 import numpy as np
 
 from .fitter import Fitter
-from .input import load_config
+from .model import Model
+from .data import Spectrum
+from .input import load_config, fetch_data
 from .loggedminuit import LoggedMinuit
 
 
@@ -38,7 +40,9 @@ def main():
     args = docopt(__doc__)
 
     config = load_config(args['CONFIG'])
-    fitter = Fitter.from_config(config.fit)
+    spectra = fetch_data(config.data, cls=Spectrum)
+    model = Model.from_config(config.model)
+    fitter = Fitter.from_config(spectra, model, config.fit)
 
     if args['--new']:
         openmode = 'x'

@@ -16,7 +16,8 @@ class Fitter:
             self, *,
             spectra: Iterable[Spectrum],
             peak_model: Model,
-            number_of_peaks: int):
+            number_of_peaks: int
+            ):
         """Constructor for the Fitter class."""
         self.spectra = spectra
         self.bin_edges = bin_edges_iff_equal(spectra)
@@ -29,16 +30,14 @@ class Fitter:
         self._parameter_limits = {}
 
     @classmethod
-    def from_config(cls, config: Config) -> Self:
-        spectra = fetch_data(config.data, cls=Spectrum)
-        model = Model.from_config(config.model)
+    def from_config(cls, spectra, model, config: Config) -> Self:
         instance = cls(
             spectra=spectra,
             peak_model=model,
-            number_of_peaks=config.fit.number_of_peaks)
-        instance.range = config.fit.range
-        instance.parameter_values = config.fit.initial_values
-        instance.parameter_limits = config.fit.parameter_ranges
+            number_of_peaks=config.number_of_peaks)
+        instance.range = config.range
+        instance.parameter_values = config.initial_values
+        instance.parameter_limits = config.parameter_ranges
         return instance
 
     @property
