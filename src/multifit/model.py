@@ -65,7 +65,10 @@ class Model:
     @classmethod
     def from_config(cls, config: ModelConfig) -> Self:
         return cls(
-            _set_kwargs(import_cdf(config.module, config.function), config.kwargs),
+            _sum_output(_set_kwargs(
+                import_cdf(config.module, config.function),
+                config.kwargs
+                )),
             spectrum_params=config.spectrum_params,
             peak_params=config.peak_params
             )
@@ -175,3 +178,13 @@ def _set_kwargs(original_cdf, kwargs):
         if par not in kwargs
         }
     return cdf
+
+def _sum_output(function, axis=0):
+    # This only adds a few µs if there is nothing to sum.
+    # Having the option to return a 2d array is useful for visualization
+    # since it lets each element be drawn separately
+    def summed(*args, **kwargs):
+        return np.sum(np.atleast_2d(function(*args, **kwargs)), axis=axis)
+    summed._parameters = function._parameters
+    return summed
+
