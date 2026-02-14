@@ -1,4 +1,6 @@
 from typing import Iterable, Self
+
+from attrs import define
 from iminuit import Minuit
 from iminuit.cost import ExtendedBinnedNLL
 from iminuit.util import describe, make_with_signature
@@ -8,7 +10,7 @@ import numpy as np
 from .data import Spectrum
 from .model import Model
 from .utils import bin_edges_iff_equal
-from .input import Config, fetch_data
+from .input import FitConfig
 
 
 class Fitter:
@@ -16,13 +18,11 @@ class Fitter:
             self, *,
             spectra: Iterable[Spectrum],
             peak_model: Model,
-            number_of_peaks: int
             ):
         """Constructor for the Fitter class."""
         self.spectra = spectra
         self.bin_edges = bin_edges_iff_equal(spectra)
         self.peak_model = peak_model
-        self.number_of_peaks = number_of_peaks
         self.loglikelihood = 0
         self.mask = None
         self._edge_range_values = (self.bin_edges[0], self.bin_edges[-1])
@@ -30,11 +30,13 @@ class Fitter:
         self._parameter_limits = {}
 
     @classmethod
-    def from_config(cls, spectra, model, config: Config) -> Self:
-        instance = cls(
-            spectra=spectra,
-            peak_model=model,
-            number_of_peaks=config.number_of_peaks)
+    def from_config(
+            cls,
+            spectra: Iterable[Spectrum],
+            model: Model,
+            config: FitConfig
+            ) -> Self:
+        instance = cls(spectra=spectra, peak_model=model)
         instance.range = config.range
         instance.parameter_values = config.initial_values
         instance.parameter_limits = config.parameter_ranges
@@ -98,7 +100,7 @@ class Fitter:
                 self.peak_model.match_param(
                     param,
                     spectrum_numbers=np.arange(len(self.spectra)),
-                    peak_numbers=np.arange(self.number_of_peaks)
+                    peak_numbers=np.arange(self.peak_model.number_of_peaks)
                     ),
                 value
                 ))
@@ -116,25 +118,4 @@ class Fitter:
                 component.mask = self.mask[self.counts_range_idx]
             self.loglikelihood += component
 
-    def sum_cdfs(self, spectrum_number) -> callable:
-        """Sum the cdfs for all peaks in a spectrum to a single cdf.
-        """
-        signature = {}
-        cdfs = [0]*self.number_of_peaks
-        for peak_number, i in enumerate(range(self.number_of_peaks)):
-            cdfs[i] = self.peak_model.make_cdf(
-                peak_number=peak_number,
-                spectrum_number=spectrum_number)
-            signature |= cdfs[i]._parameters
-
-        def sum_cdf(*args):
-            # args must be positional, but I need the names for extraction
-            parameters = {key: arg for key, arg in zip(signature, args)}
-            result = 0
-            for cdf in cdfs:
-                cdf_args = [parameters[key] for key in cdf._parameters]
-                result += cdf(*cdf_args)
-            return result
-
-        sum_cdf._parameters = signature
-        return sum_cdf
+    

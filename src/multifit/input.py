@@ -16,6 +16,17 @@ from .data import Spectrum, CoincidenceMatrix
 
 # Structure of the config file:
 
+def _list_of(itemtype):
+    def converter(iterable):
+        return [itemtype(item) for item in iterable]
+    return converter
+
+def _dict_of(itemtype):
+    def converter(d):
+        return {key: itemtype(value) for key, value in d.items}
+    return converter
+
+
 @define
 class DataConfig:
     directory: Path = field(converter=Path)
@@ -29,6 +40,7 @@ class DataConfig:
 class ModelConfig:
     module: Path = field(converter=Path)
     function: str
+    number_of_peaks: int
     spectrum_params: list[str]
     peak_params: list[str]
     kwargs: dict
@@ -38,7 +50,6 @@ class ModelConfig:
 class FitConfig:
     range: tuple = field(converter=tuple)
     mask: str  # this should probably be a different class
-    number_of_peaks: int
     parameter_ranges: dict[tuple] = field(converter=_dict_of(tuple))
     initial_values: dict[float]
 
@@ -50,18 +61,47 @@ class Config:
     fit: FitConfig
 
     @classmethod
-    def from_yaml(cls, infile):
+    def from_yaml(cls, infile, raise_error=True):
         config = yaml.load(infile, yaml.CSafeLoader)
-        return cls(
-            DataConfig(**config['data']),
-            ModelConfig(**config['model']),
-            FitConfig(**config['fit']),
-            )
+        try:
+            data = DataConfig(**config['data'])
+        except Exception as e:
+            if raise_error:
+                raise e
+            else:
+                print(
+                    f"Warning: could not read data field. Error {e}",
+                    file=sys.stderr
+                    )
+                data = None
+        try:
+            model = ModelConfig(**config['model']),
+        except Exception as e:
+            if raise_error:
+                raise e
+            else:
+                print(
+                    f"Warning: could not read model field. Error {e}",
+                    file=sys.stderr
+                    )
+                model = None
+        try:
+            fit = FitConfig(**config['fit']),
+        except Exception as e:
+            if raise_error:
+                raise e
+            else:
+                print(
+                    f"Warning: could not read fit field. Error {e}",
+                    file=sys.stderr
+                    )
+                fit = None
+        return cls(data, model, fit)
 
 
-def load_config(path_to_file, /, *, check_completeness=True) -> Config:
+def load_config(path_to_file, /, *, raise_error=True, check_completeness=True) -> Config:
     with open(path_to_file, 'r') as infile:
-        config = Config.from_yaml(infile)
+        config = Config.from_yaml(infile, raise_error=raise_error)
     if not check_completeness:
         return config
 #   TODO: (Low priority) write full completeness check.
@@ -118,16 +158,6 @@ def import_cdf(path: Path, function: str) -> callable:
         sys.path.pop(0) # remove to avoid potential import problems later
     cdf = getattr(cdf_module, function)
     return cdf
-
-def _list_of(itemtype):
-    def converter(iterable):
-        return [itemtype(item) for item in iterable]
-    return converter
-
-def _dict_of(itemtype):
-    def converter(d):
-        return {key: itemtype(value) for key, value in d.items}
-    return converter
 
 def _remove_numbering(parameters: Iterable) -> set:
     """Return the parameters with peak and spectrum numbers removed."""

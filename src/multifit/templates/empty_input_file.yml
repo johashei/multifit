@@ -16,6 +16,7 @@ data:
 model:
   module: # path/to/python/file.py
   function: # name of function to fit
+  number_of_peaks: # how many peaks to fit. Each will be fitted by the given function.
   spectrum_params:
     - <parameter_name>     # parameters with the same value for all peaks in a spectrum
     - # ...
@@ -28,7 +29,6 @@ model:
 fit:
   range: [<min>, <max>] # limits of the fit
   mask: # A boolean expression which evaluates to true for all bins used in the fit
-  number_of_peaks: # how many peaks to fit. Each will be fitted by the given function.
   parameter_ranges:
     <parameter_name>: [<min>, <max>]   # Ranges within which each parameter is allowed
     # ...                              # to vary

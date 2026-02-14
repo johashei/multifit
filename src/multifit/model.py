@@ -20,7 +20,7 @@ class Model:
     peak_params: set -- parameters which are shared accross spectra, but
         are different for each peak number.
     """
-    def __init__(self, cdf, *, spectrum_params, peak_params):
+    def __init__(self, cdf, *, spectrum_params, peak_params, number_of_peaks):
         """Constructor for the Model class.
 
         Keyword arguments:
@@ -35,6 +35,7 @@ class Model:
             number accross all spectra. Must match parameter names in cdf.
         """
         self.cdf = cdf
+        self.number_of_peaks = number_of_peaks
         spectrum_params = set(spectrum_params)
         peak_params = set(peak_params)
 
@@ -96,6 +97,29 @@ class Model:
             replacements[param] = self.match_param(
                 param, peak_number, spectrum_number)[0] # unpack from list
         return make_with_signature(self.cdf, **replacements)
+
+    def sum_cdfs(self, spectrum_number) -> callable:
+        """Sum the cdfs for all peaks in a spectrum to a single cdf.
+        """
+        signature = {}
+        cdfs = [0]*self.number_of_peaks
+        for peak_number, i in enumerate(range(self.number_of_peaks)):
+            cdfs[i] = self.make_cdf(
+                peak_number=peak_number,
+                spectrum_number=spectrum_number)
+            signature |= cdfs[i]._parameters
+
+        def sum_cdf(*args):
+            # args must be positional, but I need the names for extraction
+            parameters = {key: arg for key, arg in zip(signature, args)}
+            result = 0
+            for cdf in cdfs:
+                cdf_args = [parameters[key] for key in cdf._parameters]
+                result += cdf(*cdf_args)
+            return result
+
+        sum_cdf._parameters = signature
+        return sum_cdf
 
     def match_param(self, string, peak_numbers, spectrum_numbers) -> list[str]:
         """List parameters matching string given peak and spectrum numbers.
