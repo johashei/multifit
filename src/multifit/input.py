@@ -14,7 +14,7 @@ import yaml
 
 from .data import Spectrum, CoincidenceMatrix
 
-# Structure of the config file:
+# type converters
 
 def _list_of(itemtype):
     def converter(iterable):
@@ -26,6 +26,7 @@ def _dict_of(itemtype):
         return {key: itemtype(value) for key, value in d.items}
     return converter
 
+# Structure of the config file:
 
 @define
 class DataConfig:
@@ -99,11 +100,12 @@ class Config:
         return cls(data, model, fit)
 
 
-def load_config(path_to_file, /, *, raise_error=True, check_completeness=True) -> Config:
+def load_config(path_to_file, /, *, raise_error=True) -> Config:
     with open(path_to_file, 'r') as infile:
         config = Config.from_yaml(infile, raise_error=raise_error)
-    if not check_completeness:
-        return config
+    return config
+
+def check_completeness(config: Config):
 #   TODO: (Low priority) write full completeness check.
 #    if (missing := (set(config) - required_keys)):
 #        raise KeyError(f"The config file is missing the entries {missing}")
@@ -111,7 +113,6 @@ def load_config(path_to_file, /, *, raise_error=True, check_completeness=True) -
             == _remove_numbering(config.fit.initial_values.keys())):
         raise KeyError("All fit parameters must have specified ranges "
                        "and initial values.")
-    return config
 
 def fetch_data(
         config: DataConfig,
