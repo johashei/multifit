@@ -2,12 +2,96 @@ from typing import Iterable
 
 from attrs import define, field
 import matplotlib.pyplot as plt
+from matplotlib.patches import StepPatch
 from matplotlib.ticker import MaxNLocator, FuncFormatter
 from matplotlib.widgets import Slider, Cursor
 import numpy as np
+from numpy.typing import NDArray
 
 from .data import Spectrum
 from .utils import exponent
+
+@define
+class FigureWithWidgets(plt.Figure):
+    widgets: dict[str: plt.Widget]
+
+
+@define
+class Histogram:
+    counts: NDArray
+    edges: NDArray
+    line: StepPatch
+    fill: StepPatch
+
+    @classmethod
+    def from_spectrum(cls, spectrum: Spectrum, ax: plt.Axes):
+        counts = spectrum.counts/np.diff(spectrum.bin_edges)
+        fill = ax.stairs(
+            counts,
+            spectrum.bin_edges,
+            fill=True,
+            alpha=0.5
+            )
+        line = ax.stairs(
+            counts,
+            spectrum.bin_edges,
+            fill=False,
+           # color=None,
+            linestyle='-',
+            linewidth=0.5,
+            edgecolor='k',
+            zorder=2
+            )
+        return cls(counts, spectrum.bin_edges, line, fill)
+
+    def set_baseline(self, value):
+        self.line.set_data(values=self.counts + value, baseline=value)
+        self.fill.set_data(values=self.counts + value, baseline=value)
+
+
+@define
+class Density:
+    xdata: NDArray
+    ydata: NDArray
+    background: plt.Line2D
+    components: list[plt.Line2D]
+    total: plt.Line2D
+
+    @classmethod
+    def from_data(cls, x: NDArray, y: NDArray, ax: plt.Axes, as_background=None):
+        components = np.atleast_2d(y)
+        total = np.sum(components, axis=0)
+        if as_background is not None:
+            background = components[as_background]
+            components = np.delete(components, as_background, axis=0)
+            [bk_line] = ax.plot(x, background)
+        else:
+            background = np.zeros_like(total)
+            [bk_line] = ax.plot(x, background, visible=False)
+        cmp_lines = ax.plot(x, (components + background).T)
+        [tot_line] = ax.plot(x, total)
+        # ydata on the form
+        # [[background], [component_1], ..., [component_n], [total]]
+        ydata = np.concat(
+                [np.atleast_2d(background), components, np.atleast_2d(total)],
+                axis=0
+                )
+        return cls(
+            x,
+            ydata,
+            bk_line,
+            cmp_lines,
+            tot_line
+            )
+
+    def set_baseline(self, value):
+        self.background.set_ydata(self.ydata[0] + value)
+        for line, ydata in zip(self.components, self.ydata[1:-1]):
+            line.set_ydata(ydata + self.ydata[0] + value)
+        self.total.set_ydata(self.ydata[-1] + value)
+
+
+## ^-New stuff  v-Old stuff
 
 @define
 class InteractivePlot:

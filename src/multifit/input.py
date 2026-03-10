@@ -2,10 +2,11 @@
 """
 from contextlib import chdir
 from functools import partial
-from importlib import import_module
 from pathlib import Path
+from runpy import run_path
 import sys
-from typing import Iterable
+from typing import Iterable, TextIO
+import warnings
 
 from attrs import define, field
 from iminuit.util import describe
@@ -23,7 +24,7 @@ def _list_of(itemtype):
 
 def _dict_of(itemtype):
     def converter(d):
-        return {key: itemtype(value) for key, value in d.items}
+        return {key: itemtype(value) for key, value in d.items()}
     return converter
 
 # Structure of the config file:
@@ -50,10 +51,12 @@ class ModelConfig:
 @define
 class FitConfig:
     range: tuple = field(converter=tuple)
-    mask: str  # this should probably be a different class
+#    mask: str  # TODO: find a better way to implement this functionality
     parameter_ranges: dict[tuple] = field(converter=_dict_of(tuple))
     initial_values: dict[float]
 
+class IncompleteConfigWarning(Warning):
+    pass
 
 @define
 class Config:
@@ -62,47 +65,33 @@ class Config:
     fit: FitConfig
 
     @classmethod
-    def from_yaml(cls, infile, raise_error=True):
-        config = yaml.load(infile, yaml.CSafeLoader)
-        try:
-            data = DataConfig(**config['data'])
-        except Exception as e:
-            if raise_error:
-                raise e
-            else:
-                print(
-                    f"Warning: could not read data field. Error {e}",
-                    file=sys.stderr
-                    )
-                data = None
-        try:
-            model = ModelConfig(**config['model']),
-        except Exception as e:
-            if raise_error:
-                raise e
-            else:
-                print(
-                    f"Warning: could not read model field. Error {e}",
-                    file=sys.stderr
-                    )
-                model = None
-        try:
-            fit = FitConfig(**config['fit']),
-        except Exception as e:
-            if raise_error:
-                raise e
-            else:
-                print(
-                    f"Warning: could not read fit field. Error {e}",
-                    file=sys.stderr
-                    )
-                fit = None
-        return cls(data, model, fit)
+    def from_yaml(cls, file: TextIO | Path | str, error_if_incomplete=True):
+        if isinstance(file, TextIO):
+            config = yaml.load(file, yaml.CSafeLoader)
+        else:
+            with open(file, 'r') as infile:
+                config = yaml.load(infile, yaml.CSafeLoader)
+        fields = {'data': DataConfig, 'model': ModelConfig, 'fit': FitConfig}
+        for key, typ in fields.items():
+            try:
+                fields[key] = typ(**config[key])
+            except Exception as e:
+                if error_if_incomplete:
+                    raise e
+                else:
+                    warnings.warn(
+                        f"Could not read {key} field. Error\n{e}",
+                        category=IncompleteConfigWarning,
+                        stacklevel=2
+                        )
+                fields[key] = None
+
+        return cls(**fields)
 
 
-def load_config(path_to_file, /, *, raise_error=True) -> Config:
+def load_config(path_to_file, /, *, error_if_incomplete=True) -> Config:
     with open(path_to_file, 'r') as infile:
-        config = Config.from_yaml(infile, raise_error=raise_error)
+        config = Config.from_yaml(infile, raise_error=error_if_incomplete)
     return config
 
 def check_completeness(config: Config):
@@ -153,11 +142,11 @@ def fetch_data(
     return data
 
 def import_cdf(path: Path, function: str) -> callable:
+    path = path.resolve()
+    # chdir in case the module uses relative imports
     with chdir(path.parent):
-        sys.path.insert(0, './')
-        cdf_module = import_module(path.stem)
-        sys.path.pop(0) # remove to avoid potential import problems later
-    cdf = getattr(cdf_module, function)
+        cdf_module_dict = run_path(path)
+    cdf = cdf_module_dict[function]
     return cdf
 
 def _remove_numbering(parameters: Iterable) -> set:

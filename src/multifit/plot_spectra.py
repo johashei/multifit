@@ -3,8 +3,8 @@
 """plot_spectra.
 
 Usage:
-    plot_spectra CONFIG [options]
-    plot_spectra (-h | --help)
+    multifit plot CONFIG [options]
+    multifit plot (-h | --help)
 
 Options:
     -h --help             Show this help screen and exit
@@ -24,7 +24,7 @@ from matplotlib.widgets import Slider, Cursor
 import numpy as np
 
 from .data import Spectrum
-from .input import load_config, fetch_spectra
+from .input import load_config, fetch_data
 from .utils import exponent
 from .plot_tools import (
     get_cycler_from_cmap,
@@ -45,9 +45,9 @@ def main():
     plt.show()
 
 def make_interactive_plot(args):
-    config = load_config(args['CONFIG'], check_completeness=False)
+    config = load_config(args['CONFIG'], raise_error=False, check_completeness=False)
 
-    spectra = fetch_spectra(config, 0)
+    spectra = fetch_data(config.data, cls=Spectrum)
     bin_width = config.data.bin_width
 
     max_offset = get_offset_from_spectra(spectra)

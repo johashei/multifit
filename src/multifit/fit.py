@@ -32,14 +32,14 @@ import numpy as np
 from .fitter import Fitter
 from .model import Model
 from .data import Spectrum
-from .input import load_config, fetch_data
+from .input import Config, fetch_data
 from .loggedminuit import LoggedMinuit
 
 
 def main():
     args = docopt(__doc__)
 
-    config = load_config(args['CONFIG'])
+    config = Config.from_yaml(args['CONFIG'])
     spectra = fetch_data(config.data, cls=Spectrum)
     model = Model.from_config(config.model)
     fitter = Fitter.from_config(spectra, model, config.fit)
@@ -53,7 +53,7 @@ def main():
 
     try:
         mask = config.fit.mask
-    except KeyError:
+    except AttributeError:
         pass  # mask key is optional in the config file.
     else:
         fitter.mask = eval(mask)  # I trust you know what you're doing

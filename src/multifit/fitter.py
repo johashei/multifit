@@ -112,10 +112,8 @@ class Fitter:
             component = ExtendedBinnedNLL(
                 spectrum.counts[self.counts_range_idx],
                 spectrum.bin_edges[self.edge_range_idx],
-                self.sum_cdfs(spectrum_number)
+                self.peak_model.sum_cdfs(spectrum_number)
                 )
             if self.mask is not None:
                 component.mask = self.mask[self.counts_range_idx]
             self.loglikelihood += component
-
-    

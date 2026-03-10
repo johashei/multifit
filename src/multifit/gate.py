@@ -43,7 +43,7 @@ def make_interactive_plot(args):
     config = load_config(args['CONFIG'], check_completeness=False)
 
     if not (default_export_path := args['--export']):
-        default_export_path = config['data']['directory']
+        default_export_path = config.data.directory
 
     matrices = fetch_data(
         config,
@@ -51,7 +51,7 @@ def make_interactive_plot(args):
         cls=CoincidenceMatrix,
         npy=True
         )
-    bin_width = config['data']['bin_width']
+    bin_width = config.data.bin_width
     min_bin_edge = matrices[0].bin_edges[0]
     max_bin_edge = matrices[0].bin_edges[-1]
 

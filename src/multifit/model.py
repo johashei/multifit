@@ -71,7 +71,8 @@ class Model:
                 config.kwargs
                 )),
             spectrum_params=config.spectrum_params,
-            peak_params=config.peak_params
+            peak_params=config.peak_params,
+            number_of_peaks=config.number_of_peaks
             )
 
     def make_cdf(
