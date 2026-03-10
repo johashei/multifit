@@ -32,7 +32,6 @@ def main():
 
     command = args['COMMAND']
     command_args = args['ARGS']
-#    argv = [command] + command_args
 
     match command:
         case 'config':
