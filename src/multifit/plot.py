@@ -15,7 +15,9 @@ Fit selection options: (only relevant if LOG is provided)
                         at 1, supports reverse indexing. [default: -1]
     -b --background INDEX
                         Use this component of the model cdf as the
-                        background when plotting.
+                        background when plottin
+
+Copyright (C) 2026 Johannes Sørby Heines
 """
 from functools import partial
 

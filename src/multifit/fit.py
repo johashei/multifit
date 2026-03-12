@@ -21,6 +21,8 @@ Usage: multifit fit CONFIG LOG (--new | --overwrite | --append)
                         necessary). This can take several minutes.
     --retries N         Rerun migrad this number of times after a minimum
                         has been found. [default: 0]
+
+Copyright (C) 2026 Johannes Sørby Heines
 """
 
 from functools import partial

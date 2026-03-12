@@ -3,6 +3,8 @@
 Usage: multifit config
 
     -h --help           Print this help screen and exit.
+
+Copyright (C) 2026 Johannes Sørby Heines
 """
 from importlib import resources
 

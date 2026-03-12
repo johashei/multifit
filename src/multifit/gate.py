@@ -13,6 +13,8 @@ Plotting options:
 
 Debugging options:
     --printargs         Print arguments and exit.
+
+Copyright (C) 2026 Johannes Sørby Heines
 """
 
 from functools import partial
