@@ -1,16 +1,17 @@
 #!/usr/bin/python3
 
 """
-Usage: multifit fit CONFIG LOG (--new | --overwrite | --append)
-                    [-v] [--minos PARAM...] [--strategy N] [--tries N]
-                    [--retries N] [--printargs]
+Usage: multifit fit CONFIG LOG [-v] [-r | -a] [--minos PARAM...]
+                    [--strategy N] [--tries N] [--retries N]
+
+    CONFIG              yaml configuration file.
+    LOG                 json log file. By default, raises an error if
+                        the file already exists.
 
     -h --help           Show this help screen and exit.
     -v --verbose        Print runtime information.
-    --new               Write a new log file. Will raise an error if the
-                        file already exists.
-    --overwrite         Replace an existing log file .
-    --append            Append to an existing log file.
+    -r --recreate       Replace an existing log file .
+    -a --append         Append to an existing log file.
     --tries N           Number of times to run the migrad minimiser
                         before giving up. [default: 5]
     --strategy N        Strategy to use for the minimisation. Choices are
@@ -26,6 +27,7 @@ Copyright (C) 2026 Johannes Sørby Heines
 """
 
 from functools import partial
+from pathlib import Path
 import sys
 
 from docopt import docopt
@@ -46,12 +48,12 @@ def main():
     model = Model.from_config(config.model)
     fitter = Fitter.from_config(spectra, model, config.fit)
 
-    if args['--new']:
-        openmode = 'x'
-    elif args['--overwrite']:
+    if args['--recreate']:
         openmode = 'w'
     elif args['--append']:
         openmode = 'a'
+    else:
+        openmode = 'x'
 
     try:
         mask = config.fit.mask
@@ -60,15 +62,21 @@ def main():
     else:
         fitter.mask = eval(mask)  # I trust you know what you're doing
     with open(args['LOG'], openmode) as logfile:
-        minuit = run_fit(
-            fitter,
-            logfile,
-            maxtries=int(args['--tries']),
-            minos=args['--minos'],
-            retries=int(args['--retries']),
-            strategy=int(args['--strategy']),
-            verbose=args['--verbose']
-            )
+        try:
+            minuit = run_fit(
+                fitter,
+                logfile,
+                maxtries=int(args['--tries']),
+                minos=args['--minos'],
+                retries=int(args['--retries']),
+                strategy=int(args['--strategy']),
+                verbose=args['--verbose']
+                )
+        except Exception as e:
+            # delete file if fit could not run
+            Path(args['LOG']).unlink()
+            raise e
+    # Print full report from iminuit
     print(minuit)
 
 # Separated from main so fits can be run from another program
@@ -121,7 +129,6 @@ def run_fit(
             vprint(f"Minos failed for the following parameters:\n{failed}")
         else:
             vprint("Minos succeeded for all parameters.")
-        # Print full report from iminuit
         return minuit
 
 
