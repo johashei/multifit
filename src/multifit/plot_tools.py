@@ -15,6 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+from importlib import import_module
 from typing import Iterable
 
 from attrs import define, field
@@ -53,7 +54,7 @@ class Histogram:
             counts,
             spectrum.bin_edges,
             fill=False,
-           # color=None,
+            color=None, # necessary for color cycler to work correctly
             linestyle='-',
             linewidth=0.5,
             edgecolor='k',
@@ -107,6 +108,31 @@ class Density:
             line.set_ydata(ydata + self.ydata[0] + value)
         self.total.set_ydata(self.ydata[-1] + value)
 
+
+def get_third_party_cmap(name, module=None):
+    if module:
+        import_module(module)
+        return plt.get_cmap(name)
+
+    short_module = name.split('.')[0]
+    match short_module:
+        case 'cmc':
+            import cmcrameri as cmc
+            return plt.get_cmap(name)
+        case 'cmr':
+            import cmasher as cmr
+            return plt.get_cmap(name)
+        case _:
+            raise ValueError(
+                f"Colormap {name} unknown. Try specifying the module it "
+                "should be imported from."
+                )
+
+def get_cycler_from_cmap(cmap, number_of_colors=None, low=0, high=1):
+    if not number_of_colors:
+        number_of_colors = cmap.N
+    points = np.linspace(low, high, int(number_of_colors))
+    return plt.cycler('color', cmap(points))
 
 ## ^-New stuff  v-Old stuff
 
@@ -178,13 +204,6 @@ def eventsoff(*widgets: plt.Widget):
             return return_value
         return inner
     return decorator
-
-def get_cycler_from_cmap(cmap, number_of_colors=None, low=0, high=1):
-    if not number_of_colors:
-        number_of_colors = cmap.N
-    points = np.linspace(low, high, int(number_of_colors))
-    return plt.cycler('color', cmap(points))
-    # TODO: possible improvement: add option for categorical data.
 
 def set_aesthetics(ax, offset: int, ygridsep: int | None, args: dict):
     ax.set_yticks(np.arange(*ax.get_ylim(), offset), labels=[])

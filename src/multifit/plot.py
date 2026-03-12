@@ -1,14 +1,16 @@
 #!/usr/bin/python3
 """
-Usage: multifit plot CONFIG [LOG] [--color MAP] [--xlabel LABEL]
-                     [--ylabel LABEL] [--callnumber N] [--background INDEX]
+Usage: multifit plot CONFIG [LOG] [--color MAP [--import MODULE]]
+                     [--xlabel LABEL] [--ylabel LABEL]
+                     [--callnumber N] [--background INDEX]
 
     -h --help           Print this help screen and exit.
 
 Plotting options:
-    -c --color MAP      Name of the colormap to use. [default: viridis]
     -x --xlabel LABEL   Label on the x axis. [default: value]
     -y --ylabel LABEL   Label on the y axis. [default: counts per bin]
+    -c --color MAP      Name of the colormap to use. [default: viridis]
+    -i --import MODULE  Use a third party colormap from MODULE.
 
 Fit selection options (only relevant if LOG is provided):
     --callnumber N      Number of the migrad iteration to plot. Starts
@@ -30,7 +32,8 @@ from .data import Spectrum
 from .input import Config, fetch_data, import_cdf
 from .loggedminuit import MinuitLog
 from .plot_tools import (
-        FigureWithWidgets, Histogram, get_cycler_from_cmap, Density
+        FigureWithWidgets, Histogram, Density,
+        get_cycler_from_cmap, get_third_party_cmap
         )
 
 def main():
@@ -45,8 +48,12 @@ def main():
     fig, [ax, _, _] = make_interactive_figure(max_offset=max_spectrum_height)
 
     # set color cycle
-#    ax.set_prop_cycle(get_cycler_from_cmap(
-#        plt.get_cmap(args['--color']), len(spectra), 0.1, 0.9))
+    try:
+        cmap = plt.get_cmap(args['--color'])
+    except ValueError:
+        cmap = get_third_party_cmap(args['--color'], args['--import'])
+    ax.set_prop_cycle(get_cycler_from_cmap(
+        plt.get_cmap(args['--color']), len(spectra), 0.1, 0.9))
 
     # draw the data
     histograms = [Histogram.from_spectrum(spc, ax) for spc in spectra]
@@ -132,7 +139,7 @@ def make_interactive_figure(max_offset):
         useblit=True,
         color='k',
         linestyle=':',
-        linewidth=0.8
+        linewidth=1
         )
     buttons = [Button(
         ax_button,
