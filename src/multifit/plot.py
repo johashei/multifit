@@ -10,12 +10,12 @@ Plotting options:
     -x --xlabel LABEL   Label on the x axis. [default: value]
     -y --ylabel LABEL   Label on the y axis. [default: counts per bin]
 
-Fit selection options: (only relevant if LOG is provided)
+Fit selection options (only relevant if LOG is provided):
     --callnumber N      Number of the migrad iteration to plot. Starts
                         at 1, supports reverse indexing. [default: -1]
     -b --background INDEX
                         Use this component of the model cdf as the
-                        background when plottin
+                        background when plotting.
 
 Copyright (C) 2026 Johannes Sørby Heines
 """
@@ -23,7 +23,6 @@ from functools import partial
 
 from docopt import docopt
 import matplotlib.pyplot as plt
-from matplotlib.backend_bases import NavigationToolbar2
 from matplotlib.widgets import Slider, Cursor
 import numpy as np
 
@@ -142,17 +141,14 @@ def update_offset(val, ax, histograms, densities, previous_val=[0]):
     if densities:
         for i, density in enumerate(densities):
             density.set_baseline(i*val)
-    # setting the yticks also sets ylim to include all ticks. This
-    # means calling this function automatically ensures all spectra
-    # are visible.
+    # set_yticks expands view limits to include all ticks
+    # To avoid this, get ylim before set_yticks and set it after.
+    ylim = ax.get_ylim()
     try:
         ax.set_yticks(np.arange(0, (i+1)*val, val)) #, labels=[])
     except ZeroDivisionError:
         ax.set_yticks([0], labels=[])
-    # update ylim so the top and bottom points stay the same
-    # previous_val is a list so it can be updated by the function, since
-    # I cannot catch it's return value
-    ylim = ax.get_ylim()
+    # These ylims ensure the shown data range stays the same.
     ax.set_ylim((ylim[0], ylim[1] + (val - previous_val[0])*i))
     previous_val[0] = val
 #    ygridsep = gridsep_from_offset(val)
