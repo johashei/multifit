@@ -23,7 +23,7 @@ from functools import partial
 
 from docopt import docopt
 import matplotlib.pyplot as plt
-from matplotlib.widgets import Slider, Cursor
+from matplotlib.widgets import Slider, Cursor, Button
 import numpy as np
 
 from .data import Spectrum
@@ -42,7 +42,7 @@ def main():
 
     # make figure
     max_spectrum_height = max([np.nanmax(spc.counts) for spc in spectra])
-    fig, [ax, _] = make_interactive_figure(max_offset=max_spectrum_height)
+    fig, [ax, _, _] = make_interactive_figure(max_offset=max_spectrum_height)
 
     # set color cycle
 #    ax.set_prop_cycle(get_cycler_from_cmap(
@@ -87,7 +87,7 @@ def main():
     else:
         densities = None
 
-    # initialize the update function
+    # initialize the offset update function and connect slider
     update_offset_ax = partial(
         update_offset,
         ax=ax,
@@ -97,20 +97,26 @@ def main():
     update_offset_ax(max_spectrum_height/2)
     fig.widgets['slider'].on_changed(update_offset_ax)
 
+    # unitialize the unzoom function and connect button
+    fig.widgets['button3'].on_clicked(partial(unzoom, ax=ax))
+    fig.widgets['button3'].label.set_text("unzoom")
+
     # set initial ylim
     ax.set_ylim([0, max_spectrum_height/2*(len(spectra)+1)])
-
 
     plt.show()
 
 
 def make_interactive_figure(max_offset):
-    fig, [ax_plot, ax_slider] = plt.subplots(
+    fig = plt.figure(figsize=(9, 12), layout='constrained')
+    gs_side = fig.add_gridspec(
         ncols=2,
-        figsize=(9, 12),
-        layout='constrained',
-        width_ratios=[0.95, 0.05]
+        width_ratios=[20, 1]
         )
+    gs_top = gs_side[0].subgridspec(ncols=4, nrows=2, height_ratios=[1, 30])
+    ax_plot = fig.add_subplot(gs_top[1, :])
+    ax_slider = fig.add_subplot(gs_side[1])
+    ax_buttons = [fig.add_subplot(gs_top[0, i]) for i in range(4)]
     slider = Slider(
         ax=ax_slider,
         label='spectrum\nseparation',
@@ -128,9 +134,22 @@ def make_interactive_figure(max_offset):
         linestyle=':',
         linewidth=0.8
         )
+    buttons = [Button(
+        ax_button,
+        label=f"button",
+        color='w',
+        hovercolor='azure',
+        useblit=True
+        )
+        for ax_button in ax_buttons]
     # Monkeypatch the widgets onto the figure so they stay in scope
-    fig.widgets = {'slider': slider, 'cursor': cursor}
-    return fig, [ax_plot, ax_slider]
+    fig.widgets = {
+        'slider': slider,
+        'cursor': cursor
+        } | {
+        f'button{i}': button for i, button in enumerate(buttons)
+        }
+    return fig, [ax_plot, ax_slider, ax_buttons]
 
 # previous_val is a list because it needs to persist between
 # functions calls but I cannot catch it as a return value.
@@ -160,6 +179,13 @@ def update_offset(val, ax, histograms, densities, previous_val=[0]):
 #    ax.set_yticks(major_ticks[:-1], labels=[])
 #    ax.set_yticks(minor_ticks, minor=True, labels=[])
 #    grid_info.set_text(f"Gridelines every {ygridsep}")
+
+def unzoom(_, ax):
+    # unzooms the ax using the set_yticks automatic expansion
+ #   ax.set_yticks(list(ax.get_yticks()))
+    ax.relim()
+    ax.autoscale(axis='y')
+    plt.draw()
 
 def approximate_pdf(cdf: callable, h: float) -> callable:
     # simple numerical differentiation
