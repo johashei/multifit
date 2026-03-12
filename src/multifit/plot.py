@@ -60,6 +60,7 @@ def main():
 
     # read and draw the fit result
     if (logfile := args['LOG']):
+        ax.set_prop_cycle(get_cycler_from_cmap(plt.get_cmap('tab10')))
         with open(logfile, 'r') as infile:
             log = MinuitLog.from_file(infile)
 
