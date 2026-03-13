@@ -102,6 +102,20 @@ class Density:
             tot_line
             )
 
+#    def add_data(self, y: NDArray, ax):
+#        """adds data to the density, resets the baseline"""
+#        y = np.atleast_2d(y)
+#        if y.dim[1] != len(self.xdata):
+#            raise ValueError("Data must use the same x values")  # write better
+#        # add new data
+#        total_y = np.sum(y, axis=0)
+#        new_total = self.ydata[-1] + total_y
+#        self.ydata = np.concat([self.ydata[:-1], y, new_total], axis=0)
+#        # add new plot lines
+#        self.components += ax.plot(self.x, (total_y + self.background).T)
+#        # update total plot line
+#        self.total.set_ydata(new_total)
+
     def set_baseline(self, value):
         self.background.set_ydata(self.ydata[0] + value)
         for line, ydata in zip(self.components, self.ydata[1:-1]):

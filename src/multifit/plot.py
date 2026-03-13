@@ -65,7 +65,7 @@ def main():
             log = MinuitLog.from_file(infile)
 
         pdf = partial(
-            approximate_pdf(import_cdf(
+            differentiate(import_cdf(
                     config.model.module,
                     config.model.function
                     ),
@@ -78,20 +78,23 @@ def main():
             background_index = None
         x = np.arange(*config.fit.range, config.data.bin_width/5)
         densities = []
-        for peak_number in range(config.model.number_of_peaks):
-            for spect_number in range(len(spectra)):
+        for spect_number in range(len(spectra)):
+            pdfs = []
+            for peak_number in range(config.model.number_of_peaks):
                 parameters = log.extract_minima(
                     int(args['--callnumber']),
                     peak_number,
                     spect_number
                     )
-                densities.append(Density.from_data(
-                    x,
-                    pdf(x, **parameters, **config.model.kwargs),
-                    ax,
-                    background_index
-                    ))
-                densities[-1].background.set_color('k')
+                y = np.atleast_2d(pdf(x, **parameters, **config.model.kwargs))
+                pdfs.append(y)
+            densities.append(Density.from_data(
+                x,
+                np.concat(pdfs, axis=0),
+                ax,
+                background_index
+                ))
+            densities[-1].background.set_color('k')
     else:
         densities = None
 
@@ -195,10 +198,10 @@ def unzoom(_, ax):
     ax.autoscale(axis='y')
     plt.draw()
 
-def approximate_pdf(cdf: callable, h: float) -> callable:
+def differentiate(f: callable, h: float) -> callable:
     # simple numerical differentiation
     def pdf(x, *args, **kwargs):
-        return (cdf(x + h, *args, **kwargs) - cdf(x - h, *args, **kwargs))/2/h
+        return (f(x + h, *args, **kwargs) - f(x - h, *args, **kwargs))/2/h
     return pdf
 
 if __name__ == '__main__':
