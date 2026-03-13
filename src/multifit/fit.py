@@ -129,7 +129,7 @@ def run_fit(
             vprint(f"Minos failed for the following parameters:\n{failed}")
         else:
             vprint("Minos succeeded for all parameters.")
-        return minuit
+    return minuit
 
 
 if __name__ == '__main__':

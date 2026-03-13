@@ -62,6 +62,12 @@ class LoggedMinuit:
             self.update_infoline()
             self._logfile.write('}\n') # Close json dict
 
+    def __str__(self):
+        return (
+            f"LoggedMinuit with log at {self._logfile.name}\n"
+            f"{self._m.fmin}\n{self._m.params}"
+            )
+
     def __getattr__(self, attr):
         return getattr(self._m, attr)
 
