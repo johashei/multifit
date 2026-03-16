@@ -29,7 +29,7 @@ from matplotlib.widgets import Slider, Cursor, RangeSlider, Button, TextBox
 import numpy as np
 
 from .data import CoincidenceMatrix
-from .input import load_config, fetch_data
+from .input import Config, fetch_data
 from .plot_tools import plot_spectra, get_cycler_from_cmap, InteractivePlot
 from .plot_tools import get_offset_from_spectra, RangeMarker, eventsoff
 
@@ -42,14 +42,14 @@ def main():
     plt.show()
 
 def make_interactive_plot(args):
-    config = load_config(args['CONFIG'], check_completeness=False)
+    config = Config.from_yaml(args['CONFIG'], error_if_incomplete=False)
 
     if not (default_export_path := args['--export']):
         default_export_path = config.data.directory
 
     matrices = fetch_data(
-        config,
-        key=lambda file: file.rsplit('.', 1)[0],
+        config.data,
+        sorting_key=lambda file: file.stem,
         cls=CoincidenceMatrix,
         npy=True
         )
