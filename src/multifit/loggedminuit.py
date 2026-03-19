@@ -25,6 +25,8 @@ import sys
 
 from attrs import define
 from iminuit import Minuit
+import numpy as np
+from numpy.typing import NDArray
 
 class LoggedMinuit:
     """A wrapper around the Minuit class that writes logs to a json file.
@@ -221,10 +223,33 @@ class MinuitLog:
                     minos.append(value)
         return cls(migrad, hesse, minos)
 
-    def extract_minima(self, call: int, peak: int, spectrum: int) -> dict:
+    def extract_minimum(self, call: int, peak: int, spectrum: int) -> dict:
         return {
             key.split('_')[0]: float(value) for key, value
             in self.migrad[call]['minimum'].items()
             if key.split('_')[1] in (str(peak), '*')
                 and key.split('_')[2] in (str(spectrum), '*')
             }
+
+    def extract_parameter(self, call: int, usename: str, usepeak: str) -> NDArray:
+        output = {}
+        for key, value in self.migrad[call]['minimum'].items():
+            name, peak, spectrum = key.split('_')
+            if (name != usename) or (peak != usepeak):
+                continue
+            if spectrum == '*':  # One value for all spectra
+                return np.array([value])
+            output[int(spectrum)] = value
+        if len(output) == 0:
+            raise ValueError(
+                f"No entries found matching {usename}_{usepeak}"
+                )
+        elif len(output) < max(output) + 1:
+            raise ValueError(
+                f"Missing a spectrum.\nFound the following values:\n{output}\n"
+                )
+        elif len(output) > max(output) + 1:
+            raise ValueError(
+                f"This shouldn't be possible. Found\n{output}\n"
+                )
+        return np.array([output[k] for k in sorted(output)])

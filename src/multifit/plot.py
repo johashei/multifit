@@ -81,7 +81,7 @@ def main():
         for spect_number in range(len(spectra)):
             pdfs = []
             for peak_number in range(config.model.number_of_peaks):
-                parameters = log.extract_minima(
+                parameters = log.extract_minimum(
                     int(args['--callnumber']),
                     peak_number,
                     spect_number
