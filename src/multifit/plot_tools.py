@@ -136,6 +136,9 @@ def get_third_party_cmap(name, module=None):
         case 'cmr':
             import cmasher as cmr
             return plt.get_cmap(name)
+        case 'cc':
+            import colorcet as cc
+            return plt.get_cmap(name.replace('cc.', 'cet_'))
         case _:
             raise ValueError(
                 f"Colormap {name} unknown. Try specifying the module it "
