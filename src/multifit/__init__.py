@@ -15,9 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-#from .data import Spectrum, CoincidenceMatrix
-#from .model import Model
-#from .fitter import Fitter
 
-def confirm():
-    print("multifit.__init__.confirm() called.")
+# API: classes and functions for the user.
+# TODO: ensure these have good documentation
+from .loggedminuit import MinuitLog

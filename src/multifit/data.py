@@ -62,6 +62,10 @@ class Data:
             "This class is not meant to be used directly."
             )
 
+    @property
+    def total(self):
+        return np.sum(self.counts)
+
 
 class Spectrum(Data):
     def __init__(self, *, counts: ArrayLike, bin_edges: ArrayLike, key: str):

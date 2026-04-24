@@ -122,7 +122,7 @@ def check_completeness(config: Config):
 
 def fetch_data(
         config: DataConfig,
-        cls: Spectrum | CoincidenceMatrix,
+        cls,
         sorting_key=0,  # a constant keeps the ordering of the config file
         npy=True
     ) -> list[Spectrum | CoincidenceMatrix]:
