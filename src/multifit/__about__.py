@@ -1,4 +1,4 @@
-__version__ = '2.0.0.dev5'
+__version__ = '2.0.0.dev6'
 __copying__ = """multifit: simultaneous fitting to multiple data sets.
 
 Copyright (C) 2026 Johannes Sørby Heines

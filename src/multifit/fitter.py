@@ -57,6 +57,7 @@ class Fitter:
         instance.range = config.range
         instance.parameter_values = config.initial_values
         instance.parameter_limits = config.parameter_ranges
+        instance.mask = mask_from_ranges(config.mask, instance.bin_edges)
         return instance
 
     @property
@@ -134,3 +135,10 @@ class Fitter:
             if self.mask is not None:
                 component.mask = self.mask[self.counts_range_idx]
             self.loglikelihood += component
+
+
+def mask_from_ranges(ranges, bin_edges):
+    mask = np.zeros_like(bin_edges)
+    for [lower, upper] in ranges:
+        mask |= (lower <= bin_edges) & (bin_edges < upper)
+    return mask[:-1]  # remove the last element to index bins not edges

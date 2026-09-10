@@ -27,7 +27,8 @@ model:
     <keyword>: <value>     # additional keyword arguments of the model function wich
     #...                   # should not be included in the fit. Often includes fitrange
 fit:
-  range: [<min>, <max>] # limits of the fit
+  range: [<min>, <max>]                         # limits of the fit
+  mask: [[<min>, <max>], [<min>, <max>], ...]   # ranges to ignore in the fit (optional)
   parameter_ranges:
     <parameter_name>: [<min>, <max>]   # Ranges within which each parameter is allowed
     # ...                              # to vary

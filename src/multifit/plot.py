@@ -58,6 +58,11 @@ def main():
     # draw the data
     histograms = [Histogram.from_spectrum(spc, ax) for spc in spectra]
 
+    # mark masked areas
+    if config.fit.mask is not None:
+        for [lower, upper] in config.fit.mask:
+            ax.axvspan(lower, upper, color='k', alpha=0.1)
+
     # read and draw the fit result
     if (logfile := args['LOG']):
         ax.set_prop_cycle(get_cycler_from_cmap(plt.get_cmap('tab10')))
