@@ -59,8 +59,8 @@ def main():
         mask = config.fit.mask
     except AttributeError:
         pass  # mask key is optional in the config file.
-    else:
-        fitter.mask = eval(mask)  # I trust you know what you're doing
+#    else:
+#        fitter.mask = eval(mask)  # I trust you know what you're doing
     with open(args['LOG'], openmode) as logfile:
         try:
             minuit = run_fit(

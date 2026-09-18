@@ -138,7 +138,7 @@ class Fitter:
 
 
 def mask_from_ranges(ranges, bin_edges):
-    mask = np.zeros_like(bin_edges)
+    mask = np.zeros_like(bin_edges).astype(bool)
     for [lower, upper] in ranges:
-        mask |= (lower <= bin_edges) & (bin_edges < upper)
+        mask |= ((lower <= bin_edges) & (bin_edges < upper))
     return mask[:-1]  # remove the last element to index bins not edges
