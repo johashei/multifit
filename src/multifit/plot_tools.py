@@ -42,8 +42,11 @@ class Histogram:
     fill: StepPatch
 
     @classmethod
-    def from_spectrum(cls, spectrum: Spectrum, ax: plt.Axes):
-        counts = spectrum.counts/np.diff(spectrum.bin_edges)
+    def from_spectrum(cls, spectrum: Spectrum, ax: plt.Axes, normalize=True):
+        if normalize:
+            counts = spectrum.counts/np.diff(spectrum.bin_edges)
+        else:
+            counts = spectrum.counts
         fill = ax.stairs(
             counts,
             spectrum.bin_edges,

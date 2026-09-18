@@ -3,6 +3,7 @@
 Usage: multifit plot CONFIG [LOG] [--color MAP [--import MODULE]]
                      [--xlabel LABEL] [--ylabel LABEL]
                      [--callnumber N] [--background INDEX]
+                     [--nonormalize]
 
     -h --help           Print this help screen and exit.
 
@@ -11,6 +12,7 @@ Plotting options:
     -y --ylabel LABEL   Label on the y axis. [default: counts per bin]
     -c --color MAP      Name of the colormap to use. [default: viridis]
     -i --import MODULE  Use a third party colormap from MODULE.
+    --nonormalize       Don't nomralize the histogram.
 
 Fit selection options (only relevant if LOG is provided):
     --callnumber N      Number of the migrad iteration to plot. Starts
@@ -39,6 +41,11 @@ from .plot_tools import (
 def main():
     args = docopt(__doc__)
 
+    if args['--nonormalize']:
+        normalize = False
+    else:
+        normalize = True
+
     # the plot functionality should work even with an incomplete config
     config = Config.from_yaml(args['CONFIG'], error_if_incomplete=False)
     spectra = fetch_data(config.data, cls=Spectrum)
@@ -56,7 +63,7 @@ def main():
         plt.get_cmap(args['--color']), len(spectra), 0.1, 0.9))
 
     # draw the data
-    histograms = [Histogram.from_spectrum(spc, ax) for spc in spectra]
+    histograms = [Histogram.from_spectrum(spc, ax, normalize) for spc in spectra]
 
     # mark masked areas
     if config.fit.mask is not None:
@@ -64,6 +71,10 @@ def main():
             ax.axvspan(lower, upper, color='k', alpha=0.1)
 
     # read and draw the fit result
+    if not normalize:
+        scaling = config.data.bin_width
+    else:
+        scaling = 1
     if (logfile := args['LOG']):
         ax.set_prop_cycle(get_cycler_from_cmap(plt.get_cmap('tab10')))
         with open(logfile, 'r') as infile:
@@ -74,7 +85,7 @@ def main():
                     config.model.module,
                     config.model.function
                     ),
-                1e-3),
+                1e-5),
             )
 
         if args['--background']:
@@ -91,7 +102,7 @@ def main():
                     peak_number,
                     spect_number
                     )
-                y = np.atleast_2d(pdf(x, **parameters, **config.model.kwargs))
+                y = scaling*np.atleast_2d(pdf(x, **parameters, **config.model.kwargs))
                 pdfs.append(y)
             densities.append(Density.from_data(
                 x,
