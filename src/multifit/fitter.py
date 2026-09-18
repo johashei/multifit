@@ -57,7 +57,8 @@ class Fitter:
         instance.range = config.range
         instance.parameter_values = config.initial_values
         instance.parameter_limits = config.parameter_ranges
-        instance.mask = mask_from_ranges(config.mask, instance.bin_edges)
+        if config.mask:
+            instance.mask = mask_from_ranges(config.mask, instance.bin_edges)
         return instance
 
     @property
