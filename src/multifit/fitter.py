@@ -54,11 +54,10 @@ class Fitter:
             config: FitConfig
             ) -> Self:
         instance = cls(spectra=spectra, peak_model=model)
-        instance.range = config.range
+        instance.range = outer_range(config.range)
         instance.parameter_values = config.initial_values
         instance.parameter_limits = config.parameter_ranges
-        if config.mask:
-            instance.mask = mask_from_ranges(config.mask, instance.bin_edges)
+        instance.mask = mask_from_range(config.range, instance.bin_edges)
         return instance
 
     @property
@@ -138,8 +137,19 @@ class Fitter:
             self.loglikelihood += component
 
 
-def mask_from_ranges(ranges, bin_edges):
-    mask = np.zeros_like(bin_edges).astype(bool)
-    for [lower, upper] in ranges:
-        mask |= ((lower <= bin_edges) & (bin_edges < upper))
-    return mask[:-1]  # remove the last element to index bins not edges
+def outer_range(ranges):
+    range_list = np.atleast_2d(ranges)
+    if len(range_list) == 1:  # simple range
+        return range_list[0]
+    else: # composite range
+        return (range_list[0, 0], range_list[-1, -1])
+
+def mask_from_range(ranges, bin_edges):
+    range_list = np.atleast_2d(ranges)
+    if len(range_list) == 1:  # simple range
+        return None
+    else:
+        mask = np.zeros_like(bin_edges).astype(bool)
+        for [lower, upper] in range_list:
+            mask |= ((lower <= bin_edges) & (bin_edges < upper))
+        return mask[:-1]  # remove the last element to index bins not edges

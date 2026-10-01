@@ -67,10 +67,9 @@ class ModelConfig:
 
 @define
 class FitConfig:
-    range: tuple = field(converter=tuple)
+    range: list[tuple] | tuple
     parameter_ranges: dict[tuple] = field(converter=_dict_of(tuple))
     initial_values: dict[float]
-    mask: list[tuple] = None
 
 class IncompleteConfigWarning(Warning):
     pass

@@ -58,10 +58,11 @@ def main():
     # draw the data
     histograms = [Histogram.from_spectrum(spc, ax) for spc in spectra]
 
-    # mark masked areas
-    if config.fit.mask is not None:
-        for [lower, upper] in config.fit.mask:
-            ax.axvspan(lower, upper, color='k', alpha=0.1)
+    # mark fit range areas
+    xmin, xmax = ax.get_xlim()
+    limits = np.append(np.insert(np.ravel(config.fit.range), 0, xmin), xmax)
+    for lower, upper in zip(limits[::2], limits[1::2]):
+        ax.axvspan(lower, upper, color='k', alpha=0.1)
 
     # read and draw the fit result
     if (logfile := args['LOG']):
@@ -81,7 +82,8 @@ def main():
             background_index = int(args['--background'])
         else:
             background_index = None
-        x = np.arange(*config.fit.range, config.data.bin_width/5)
+        xmin, xmax = np.ravel(config.fit.range)[[0, -1]]
+        x = np.arange(xmin, xmax, config.data.bin_width/5)
         densities = []
         for spect_number in range(len(spectra)):
             pdfs = []
