@@ -3,7 +3,9 @@
 Usage: multifit gate CONFIG [options]
 
     -h --help           Print this help screen and exit.
-    -e --export PATH    Default export location for gated spectra.
+    -e --export PATH    Export location for gated spectra. If not given,
+                        uses the location of the data files. This can
+                        be changed before each export.
 
 Plotting options:
     -c --color MAP      Name of the colormap to use. [default: cmc.lajolla_r]
