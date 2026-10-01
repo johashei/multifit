@@ -50,9 +50,9 @@ def _dict_of(itemtype):
 class DataConfig:
     directory: Path = field(converter=Path)
     files: list[Path] = field(converter=_list_of(Path))
-    column: int
-    delimiter: str
     bin_width: float
+    column: int = 0
+    delimiter: str = None
 
 
 @define
