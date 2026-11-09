@@ -7,9 +7,10 @@ Usage: multifit fit CONFIG LOG [-v] [-r | -a] [--minos PARAM...] [options]
     LOG                 json log file. By default, raises an error if
                         the file already exists.
 
+Options:
     -h --help           Show this help screen and exit.
     -v --verbose        Print runtime information.
-    -r --recreate       Replace an existing log file .
+    -r --recreate       Replace an existing log file.
     -a --append         Append to an existing log file.
 
     --tries N           Number of times to run the migrad minimiser
