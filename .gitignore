@@ -6,6 +6,7 @@
 /env
 /doc/example
 /venv-release
+/bug_reports
 
 *.ipynb
 *.ipynb_checkpoints

@@ -10,8 +10,8 @@ data:
     - # data_file_1  # These can be in ascii or npy format
     - # data_file_2
     - # ...
-  column: # which column of the data file contains the counts, numbered from 0
-  delimiter: # column delimiter in the data file
+  column: # which column of the data file contains the counts, numbered from 0 (default: 0)
+  delimiter: # column delimiter in the data file (optional)
   bin_width: # bin width of the data
 model:
   module: # path/to/python/file.py

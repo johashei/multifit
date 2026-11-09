@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
 """
-Usage: multifit fit CONFIG LOG [-v] [-r | -a] [--minos PARAM...]
-                    [--strategy N] [--tries N] [--retries N]
+Usage: multifit fit CONFIG LOG [-v] [-r | -a] [--minos PARAM...] [options]
 
     CONFIG              yaml configuration file.
     LOG                 json log file. By default, raises an error if
@@ -12,6 +11,7 @@ Usage: multifit fit CONFIG LOG [-v] [-r | -a] [--minos PARAM...]
     -v --verbose        Print runtime information.
     -r --recreate       Replace an existing log file .
     -a --append         Append to an existing log file.
+
     --tries N           Number of times to run the migrad minimiser
                         before giving up. [default: 5]
     --strategy N        Strategy to use for the minimisation. Choices are
@@ -22,6 +22,9 @@ Usage: multifit fit CONFIG LOG [-v] [-r | -a] [--minos PARAM...]
                         necessary). This can take several minutes.
     --retries N         Rerun migrad this number of times after a minimum
                         has been found. [default: 0]
+
+    --no-delete         Keep the log file after an exception. The state
+                        of this file is undefined.
 
 Copyright (C) 2026 Johannes Sørby Heines
 """
@@ -74,7 +77,8 @@ def main():
                 )
         except Exception as e:
             # delete file if fit could not run
-            Path(args['LOG']).unlink()
+            if not args['--no-delete']:
+                Path(args['LOG']).unlink()
             raise e
     # Print full report from iminuit
     print(minuit)
@@ -99,8 +103,18 @@ def run_fit(
     while not (minuit.valid or tries >= maxtries):
         tries += 1
         vprint("Running migrad ... ")
-        minuit.migrad()
-        minuit.hesse()
+        try:
+            minuit.migrad()
+            minuit.hesse()
+        except Exception as e:
+            print(
+                "iminuit encountered an error, "
+                "printing last state of the Minuit object:",
+                file=sys.stderr
+                )
+            print(minuit, file=sys.stderr)
+            raise e
+
     while retries > 0:
         tries += 1
         retries -= 1

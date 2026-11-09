@@ -42,8 +42,11 @@ class Histogram:
     fill: StepPatch
 
     @classmethod
-    def from_spectrum(cls, spectrum: Spectrum, ax: plt.Axes):
-        counts = spectrum.counts/np.diff(spectrum.bin_edges)
+    def from_spectrum(cls, spectrum: Spectrum, ax: plt.Axes, normalize=True):
+        if normalize:
+            counts = spectrum.counts/np.diff(spectrum.bin_edges)
+        else:
+            counts = spectrum.counts
         fill = ax.stairs(
             counts,
             spectrum.bin_edges,
@@ -139,6 +142,9 @@ def get_third_party_cmap(name, module=None):
         case 'cc':
             import colorcet as cc
             return plt.get_cmap(name.replace('cc.', 'cet_'))
+        case '':
+            from cmap import Colormap
+            return plt.get_cmap(Colormap(name).to_mpl())
         case _:
             raise ValueError(
                 f"Colormap {name} unknown. Try specifying the module it "

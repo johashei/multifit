@@ -62,7 +62,7 @@ class Model:
                 "Could not detect the signature for cdf. Signatures can"
                 "be defined manually through obj._parameters.")
         all_params = set(signature)
-        all_params.remove('x')  # x is the predictor variable
+        all_params.remove('x')  # x is the predictor variable, see _set_kwargs
         if (missing := (spectrum_params | peak_params) - all_params):
             raise ValueError(
                 f"The parameters {missing} were not found in the signature "
