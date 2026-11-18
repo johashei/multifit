@@ -1,18 +1,21 @@
 #!/usr/bin/python3
-"""multifit command line interface
+"""
+=================================
+`multifit` command line interface
+=================================
 
-Usage: multifit [--version] [--copying] [--help] COMMAND [ARGS...]
+:Usage: multifit [--version] [--copying] [--help] COMMAND [ARGS...]
 
 Options:
-    -h --help       Print the help screen for the given command and exit.
+    -h, --help      Print the help screen for the given command and exit.
     --version       Print version number and exit.
     --copying       Print copyright notice and exit.
 
 List of commands:
-    config          Generate a new config file.
-    fit             Fit a set of spectra.
-    gate            Run a GUI for gating on coincidence spectra.
-    plot            Plot a set of spectra, optionally including a fit result.
+    :config:        Generate a new config file.
+    :fit:           Fit a set of spectra.
+    :gate:          Run a GUI for gating on coincidence spectra.
+    :plot:          Plot a set of spectra, optionally including a fit result.
 
 See multifit help COMMAND for more information on a specific command.
 

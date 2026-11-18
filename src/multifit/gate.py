@@ -1,21 +1,21 @@
 #!/usr/bin/python3
 """
-Usage: multifit gate CONFIG [options]
+:Usage: multifit gate CONFIG [options]
 
 General options:
-    -h --help           Print this help screen and exit.
-    -e --export PATH    Export location for gated spectra. If not given,
-                        uses the location of the data files. This can
-                        be changed before each export.
+    -h, --help           Print this help screen and exit.
+    -e, --export PATH    Export location for gated spectra. If not given,
+                         uses the location of the data files. This can
+                         be changed before each export.
 
 Plotting options:
-    -c --color MAP      Name of the colormap to use. [default: cmc.lajolla_r]
-    -x --xlabel LABEL   Label for the x axis. [default: value]
-    -y --ylabel LABEL   Label for the y axis. [default: counts per bin]
-    -g --gridsep VALUE  Fixed separation of the gridlines on the y axis.
+    -c, --color MAP      Name of the colormap to use. [default: cmc.lajolla_r]
+    -x, --xlabel LABEL   Label for the x axis. [default: value]
+    -y, --ylabel LABEL   Label for the y axis. [default: counts per bin]
+    -g, --gridsep VALUE  Fixed separation of the gridlines on the y axis.
 
 Debugging options:
-    --printargs         Print arguments and exit.
+    --printargs          Print arguments and exit.
 
 Copyright (C) 2026 Johannes Sørby Heines
 """

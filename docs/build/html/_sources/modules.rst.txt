@@ -1,0 +1,15 @@
+.. automodule:: multifit.input
+   :members:
+   :show-inheritance:
+
+.. automodule:: multifit.model
+   :members:
+   :show-inheritance:
+
+.. automodule:: multifit.data
+   :members:
+   :show-inheritance:
+
+.. automodule:: multifit.utils
+   :members:
+   :show-inheritance:

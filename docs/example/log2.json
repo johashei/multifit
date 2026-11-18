@@ -1,0 +1,2342 @@
+{ "total_calls": {"migrad":  5, "hesse":  5, "minos":  0},
+	"migrad_1": {
+		"args": [],
+		"kwargs": {},
+		"algorithm": "Migrad",
+		"strategy": 1,
+		"valid_minimum": false,
+		"parameters_at_limit": false,
+		"reduced_chi2": 1.0231794302277382,
+		"fixed": [],
+		"limits": {
+			"x0_0_*": [
+				325.0,
+				378.5
+			],
+			"separation_0_*": [
+				0.0,
+				20.0
+			],
+			"σ0_0_*": [
+				0.0,
+				5.0
+			],
+			"σ1_0_*": [
+				0.0,
+				5.0
+			],
+			"totalarea_0_0": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_0": [
+				0.0,
+				1.0
+			],
+			"slope_0_0": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_0": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_1": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_1": [
+				0.0,
+				1.0
+			],
+			"slope_0_1": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_1": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_2": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_2": [
+				0.0,
+				1.0
+			],
+			"slope_0_2": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_2": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_3": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_3": [
+				0.0,
+				1.0
+			],
+			"slope_0_3": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_3": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_4": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_4": [
+				0.0,
+				1.0
+			],
+			"slope_0_4": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_4": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_5": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_5": [
+				0.0,
+				1.0
+			],
+			"slope_0_5": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_5": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_6": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_6": [
+				0.0,
+				1.0
+			],
+			"slope_0_6": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_6": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_7": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_7": [
+				0.0,
+				1.0
+			],
+			"slope_0_7": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_7": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_8": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_8": [
+				0.0,
+				1.0
+			],
+			"slope_0_8": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_8": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_9": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_9": [
+				0.0,
+				1.0
+			],
+			"slope_0_9": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_9": [
+				0.0,
+				Infinity
+			]
+		},
+		"minimum": {
+			"x0_0_*": 371.0000082315286,
+			"separation_0_*": 9.000000549866217,
+			"σ0_0_*": 1.0000007100551513,
+			"σ1_0_*": 1.0000007100551513,
+			"totalarea_0_0": 700.0003867496754,
+			"ratio_0_0": 0.5000000000000163,
+			"slope_0_0": -0.16598333811144794,
+			"offset_0_0": 103.65984347516752,
+			"totalarea_0_1": 700.0003867496754,
+			"ratio_0_1": 0.5000000000000163,
+			"slope_0_1": 5.279881703209959,
+			"offset_0_1": 92.70119881868854,
+			"totalarea_0_2": 700.0003867496754,
+			"ratio_0_2": 0.5000000000000163,
+			"slope_0_2": 0.6250982517133339,
+			"offset_0_2": 118.2490085558707,
+			"totalarea_0_3": 700.0003867496753,
+			"ratio_0_3": 0.5000000000000163,
+			"slope_0_3": 0.6747680960521842,
+			"offset_0_3": 137.8524372265673,
+			"totalarea_0_4": 700.0003867496753,
+			"ratio_0_4": 0.5000000000000163,
+			"slope_0_4": 0.8105457451755835,
+			"offset_0_4": 112.99454427386644,
+			"totalarea_0_5": 700.0003867496753,
+			"ratio_0_5": 0.5000000000000163,
+			"slope_0_5": 2.501591269243647,
+			"offset_0_5": 140.28398892253313,
+			"totalarea_0_6": 700.0003867496753,
+			"ratio_0_6": 0.5000000000000163,
+			"slope_0_6": -0.6156252814170331,
+			"offset_0_6": 151.4561963807119,
+			"totalarea_0_7": 700.0003867496754,
+			"ratio_0_7": 0.5000000000000163,
+			"slope_0_7": -0.07830103542318718,
+			"offset_0_7": 171.98309040326788,
+			"totalarea_0_8": 700.0003867496754,
+			"ratio_0_8": 0.5000000000000163,
+			"slope_0_8": 0.763661375280675,
+			"offset_0_8": 182.06335633754568,
+			"totalarea_0_9": 700.0003867496754,
+			"ratio_0_9": 0.5000000000000163,
+			"slope_0_9": 1.6429193248220786,
+			"offset_0_9": 161.47079099219357
+		}
+	},
+	"hesse_1": {
+		"args": [],
+		"kwargs": {},
+		"valid_minimum": false,
+		"hesse_succeeded": false,
+		"accurate_covar": false,
+		"parameters_at_limit": false,
+		"fixed": [],
+		"limits": {
+			"x0_0_*": [
+				325.0,
+				378.5
+			],
+			"separation_0_*": [
+				0.0,
+				20.0
+			],
+			"σ0_0_*": [
+				0.0,
+				5.0
+			],
+			"σ1_0_*": [
+				0.0,
+				5.0
+			],
+			"totalarea_0_0": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_0": [
+				0.0,
+				1.0
+			],
+			"slope_0_0": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_0": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_1": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_1": [
+				0.0,
+				1.0
+			],
+			"slope_0_1": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_1": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_2": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_2": [
+				0.0,
+				1.0
+			],
+			"slope_0_2": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_2": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_3": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_3": [
+				0.0,
+				1.0
+			],
+			"slope_0_3": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_3": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_4": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_4": [
+				0.0,
+				1.0
+			],
+			"slope_0_4": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_4": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_5": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_5": [
+				0.0,
+				1.0
+			],
+			"slope_0_5": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_5": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_6": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_6": [
+				0.0,
+				1.0
+			],
+			"slope_0_6": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_6": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_7": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_7": [
+				0.0,
+				1.0
+			],
+			"slope_0_7": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_7": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_8": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_8": [
+				0.0,
+				1.0
+			],
+			"slope_0_8": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_8": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_9": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_9": [
+				0.0,
+				1.0
+			],
+			"slope_0_9": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_9": [
+				0.0,
+				Infinity
+			]
+		},
+		"errors": {
+			"x0_0_*": 0.0,
+			"separation_0_*": 0.0,
+			"σ0_0_*": 0.0,
+			"σ1_0_*": 0.0,
+			"totalarea_0_0": 0.0,
+			"ratio_0_0": 0.0,
+			"slope_0_0": 0.0,
+			"offset_0_0": 0.0,
+			"totalarea_0_1": 0.0,
+			"ratio_0_1": 0.0,
+			"slope_0_1": 0.0,
+			"offset_0_1": 0.0,
+			"totalarea_0_2": 0.0,
+			"ratio_0_2": 0.0,
+			"slope_0_2": 0.0,
+			"offset_0_2": 0.0,
+			"totalarea_0_3": 0.0,
+			"ratio_0_3": 0.0,
+			"slope_0_3": 0.0,
+			"offset_0_3": 0.0,
+			"totalarea_0_4": 0.0,
+			"ratio_0_4": 0.0,
+			"slope_0_4": 0.0,
+			"offset_0_4": 0.0,
+			"totalarea_0_5": 0.0,
+			"ratio_0_5": 0.0,
+			"slope_0_5": 0.0,
+			"offset_0_5": 0.0,
+			"totalarea_0_6": 0.0,
+			"ratio_0_6": 0.0,
+			"slope_0_6": 0.0,
+			"offset_0_6": 0.0,
+			"totalarea_0_7": 0.0,
+			"ratio_0_7": 0.0,
+			"slope_0_7": 0.0,
+			"offset_0_7": 0.0,
+			"totalarea_0_8": 0.0,
+			"ratio_0_8": 0.0,
+			"slope_0_8": 0.0,
+			"offset_0_8": 0.0,
+			"totalarea_0_9": 0.0,
+			"ratio_0_9": 0.0,
+			"slope_0_9": 0.0,
+			"offset_0_9": 0.0
+		},
+		"covariance, correlation": {}
+	},
+	"migrad_2": {
+		"args": [],
+		"kwargs": {},
+		"algorithm": "Migrad",
+		"strategy": 1,
+		"valid_minimum": false,
+		"parameters_at_limit": false,
+		"reduced_chi2": 1.0231794297260968,
+		"fixed": [],
+		"limits": {
+			"x0_0_*": [
+				325.0,
+				378.5
+			],
+			"separation_0_*": [
+				0.0,
+				20.0
+			],
+			"σ0_0_*": [
+				0.0,
+				5.0
+			],
+			"σ1_0_*": [
+				0.0,
+				5.0
+			],
+			"totalarea_0_0": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_0": [
+				0.0,
+				1.0
+			],
+			"slope_0_0": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_0": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_1": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_1": [
+				0.0,
+				1.0
+			],
+			"slope_0_1": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_1": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_2": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_2": [
+				0.0,
+				1.0
+			],
+			"slope_0_2": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_2": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_3": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_3": [
+				0.0,
+				1.0
+			],
+			"slope_0_3": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_3": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_4": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_4": [
+				0.0,
+				1.0
+			],
+			"slope_0_4": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_4": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_5": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_5": [
+				0.0,
+				1.0
+			],
+			"slope_0_5": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_5": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_6": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_6": [
+				0.0,
+				1.0
+			],
+			"slope_0_6": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_6": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_7": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_7": [
+				0.0,
+				1.0
+			],
+			"slope_0_7": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_7": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_8": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_8": [
+				0.0,
+				1.0
+			],
+			"slope_0_8": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_8": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_9": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_9": [
+				0.0,
+				1.0
+			],
+			"slope_0_9": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_9": [
+				0.0,
+				Infinity
+			]
+		},
+		"minimum": {
+			"x0_0_*": 371.0000133027389,
+			"separation_0_*": 9.000000888622914,
+			"σ0_0_*": 1.0000011474997124,
+			"σ1_0_*": 1.0000011474997124,
+			"totalarea_0_0": 700.0006250152219,
+			"ratio_0_0": 0.5000000000000263,
+			"slope_0_0": -0.16598634840508664,
+			"offset_0_0": 103.65981981803301,
+			"totalarea_0_1": 700.0006250152219,
+			"ratio_0_1": 0.5000000000000263,
+			"slope_0_1": 5.279853021483887,
+			"offset_0_1": 92.7013674794748,
+			"totalarea_0_2": 700.0006250152219,
+			"ratio_0_2": 0.5000000000000263,
+			"slope_0_2": 0.6250897478030868,
+			"offset_0_2": 118.24907842164944,
+			"totalarea_0_3": 700.0006250152219,
+			"ratio_0_3": 0.5000000000000263,
+			"slope_0_3": 0.6748197386660889,
+			"offset_0_3": 137.85173034892665,
+			"totalarea_0_4": 700.0006250152219,
+			"ratio_0_4": 0.5000000000000263,
+			"slope_0_4": 0.8105343808669183,
+			"offset_0_4": 112.9945993805093,
+			"totalarea_0_5": 700.0006250152219,
+			"ratio_0_5": 0.5000000000000263,
+			"slope_0_5": 2.501453408132235,
+			"offset_0_5": 140.28530441572437,
+			"totalarea_0_6": 700.0006250152219,
+			"ratio_0_6": 0.5000000000000263,
+			"slope_0_6": -0.6156363778330349,
+			"offset_0_6": 151.45640098907654,
+			"totalarea_0_7": 700.0006250152219,
+			"ratio_0_7": 0.5000000000000263,
+			"slope_0_7": -0.07821301958311268,
+			"offset_0_7": 171.98230901999807,
+			"totalarea_0_8": 700.0006250152219,
+			"ratio_0_8": 0.5000000000000263,
+			"slope_0_8": 0.7636116273986535,
+			"offset_0_8": 182.06375681206382,
+			"totalarea_0_9": 700.0006250152219,
+			"ratio_0_9": 0.5000000000000263,
+			"slope_0_9": 1.6428864332770567,
+			"offset_0_9": 161.47104653489353
+		}
+	},
+	"hesse_2": {
+		"args": [],
+		"kwargs": {},
+		"valid_minimum": false,
+		"hesse_succeeded": false,
+		"accurate_covar": false,
+		"parameters_at_limit": false,
+		"fixed": [],
+		"limits": {
+			"x0_0_*": [
+				325.0,
+				378.5
+			],
+			"separation_0_*": [
+				0.0,
+				20.0
+			],
+			"σ0_0_*": [
+				0.0,
+				5.0
+			],
+			"σ1_0_*": [
+				0.0,
+				5.0
+			],
+			"totalarea_0_0": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_0": [
+				0.0,
+				1.0
+			],
+			"slope_0_0": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_0": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_1": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_1": [
+				0.0,
+				1.0
+			],
+			"slope_0_1": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_1": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_2": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_2": [
+				0.0,
+				1.0
+			],
+			"slope_0_2": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_2": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_3": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_3": [
+				0.0,
+				1.0
+			],
+			"slope_0_3": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_3": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_4": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_4": [
+				0.0,
+				1.0
+			],
+			"slope_0_4": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_4": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_5": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_5": [
+				0.0,
+				1.0
+			],
+			"slope_0_5": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_5": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_6": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_6": [
+				0.0,
+				1.0
+			],
+			"slope_0_6": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_6": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_7": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_7": [
+				0.0,
+				1.0
+			],
+			"slope_0_7": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_7": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_8": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_8": [
+				0.0,
+				1.0
+			],
+			"slope_0_8": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_8": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_9": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_9": [
+				0.0,
+				1.0
+			],
+			"slope_0_9": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_9": [
+				0.0,
+				Infinity
+			]
+		},
+		"errors": {
+			"x0_0_*": 0.0,
+			"separation_0_*": 0.0,
+			"σ0_0_*": 0.0,
+			"σ1_0_*": 0.0,
+			"totalarea_0_0": 0.0,
+			"ratio_0_0": 0.0,
+			"slope_0_0": 0.0,
+			"offset_0_0": 0.0,
+			"totalarea_0_1": 0.0,
+			"ratio_0_1": 0.0,
+			"slope_0_1": 0.0,
+			"offset_0_1": 0.0,
+			"totalarea_0_2": 0.0,
+			"ratio_0_2": 0.0,
+			"slope_0_2": 0.0,
+			"offset_0_2": 0.0,
+			"totalarea_0_3": 0.0,
+			"ratio_0_3": 0.0,
+			"slope_0_3": 0.0,
+			"offset_0_3": 0.0,
+			"totalarea_0_4": 0.0,
+			"ratio_0_4": 0.0,
+			"slope_0_4": 0.0,
+			"offset_0_4": 0.0,
+			"totalarea_0_5": 0.0,
+			"ratio_0_5": 0.0,
+			"slope_0_5": 0.0,
+			"offset_0_5": 0.0,
+			"totalarea_0_6": 0.0,
+			"ratio_0_6": 0.0,
+			"slope_0_6": 0.0,
+			"offset_0_6": 0.0,
+			"totalarea_0_7": 0.0,
+			"ratio_0_7": 0.0,
+			"slope_0_7": 0.0,
+			"offset_0_7": 0.0,
+			"totalarea_0_8": 0.0,
+			"ratio_0_8": 0.0,
+			"slope_0_8": 0.0,
+			"offset_0_8": 0.0,
+			"totalarea_0_9": 0.0,
+			"ratio_0_9": 0.0,
+			"slope_0_9": 0.0,
+			"offset_0_9": 0.0
+		},
+		"covariance, correlation": {}
+	},
+	"migrad_3": {
+		"args": [],
+		"kwargs": {},
+		"algorithm": "Migrad",
+		"strategy": 1,
+		"valid_minimum": false,
+		"parameters_at_limit": false,
+		"reduced_chi2": 1.0231794295270054,
+		"fixed": [],
+		"limits": {
+			"x0_0_*": [
+				325.0,
+				378.5
+			],
+			"separation_0_*": [
+				0.0,
+				20.0
+			],
+			"σ0_0_*": [
+				0.0,
+				5.0
+			],
+			"σ1_0_*": [
+				0.0,
+				5.0
+			],
+			"totalarea_0_0": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_0": [
+				0.0,
+				1.0
+			],
+			"slope_0_0": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_0": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_1": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_1": [
+				0.0,
+				1.0
+			],
+			"slope_0_1": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_1": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_2": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_2": [
+				0.0,
+				1.0
+			],
+			"slope_0_2": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_2": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_3": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_3": [
+				0.0,
+				1.0
+			],
+			"slope_0_3": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_3": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_4": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_4": [
+				0.0,
+				1.0
+			],
+			"slope_0_4": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_4": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_5": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_5": [
+				0.0,
+				1.0
+			],
+			"slope_0_5": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_5": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_6": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_6": [
+				0.0,
+				1.0
+			],
+			"slope_0_6": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_6": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_7": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_7": [
+				0.0,
+				1.0
+			],
+			"slope_0_7": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_7": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_8": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_8": [
+				0.0,
+				1.0
+			],
+			"slope_0_8": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_8": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_9": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_9": [
+				0.0,
+				1.0
+			],
+			"slope_0_9": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_9": [
+				0.0,
+				Infinity
+			]
+		},
+		"minimum": {
+			"x0_0_*": 371.000016683546,
+			"separation_0_*": 9.000001114460648,
+			"σ0_0_*": 1.000001439129378,
+			"σ1_0_*": 1.000001439129378,
+			"totalarea_0_0": 700.0007838589647,
+			"ratio_0_0": 0.500000000000033,
+			"slope_0_0": -0.165983892768715,
+			"offset_0_0": 103.65985211653054,
+			"totalarea_0_1": 700.0007838589647,
+			"ratio_0_1": 0.500000000000033,
+			"slope_0_1": 5.279848811891296,
+			"offset_0_1": 92.7015395479772,
+			"totalarea_0_2": 700.0007838589647,
+			"ratio_0_2": 0.500000000000033,
+			"slope_0_2": 0.6250868565254017,
+			"offset_0_2": 118.24912504521465,
+			"totalarea_0_3": 700.0007838589647,
+			"ratio_0_3": 0.500000000000033,
+			"slope_0_3": 0.6748555025379447,
+			"offset_0_3": 137.85152663934758,
+			"totalarea_0_4": 700.0007838589647,
+			"ratio_0_4": 0.500000000000033,
+			"slope_0_4": 0.8105335341052803,
+			"offset_0_4": 112.99467358693171,
+			"totalarea_0_5": 700.0007838589647,
+			"ratio_0_5": 0.500000000000033,
+			"slope_0_5": 2.501396005964911,
+			"offset_0_5": 140.28600283729298,
+			"totalarea_0_6": 700.0007838589647,
+			"ratio_0_6": 0.500000000000033,
+			"slope_0_6": -0.615647069273903,
+			"offset_0_6": 151.45643293253175,
+			"totalarea_0_7": 700.000783858965,
+			"ratio_0_7": 0.500000000000033,
+			"slope_0_7": -0.07818306877734627,
+			"offset_0_7": 171.98185548135638,
+			"totalarea_0_8": 700.000783858965,
+			"ratio_0_8": 0.500000000000033,
+			"slope_0_8": 0.763596435643611,
+			"offset_0_8": 182.06403759085623,
+			"totalarea_0_9": 700.000783858965,
+			"ratio_0_9": 0.500000000000033,
+			"slope_0_9": 1.6428769437828123,
+			"offset_0_9": 161.47123191149484
+		}
+	},
+	"hesse_3": {
+		"args": [],
+		"kwargs": {},
+		"valid_minimum": false,
+		"hesse_succeeded": false,
+		"accurate_covar": false,
+		"parameters_at_limit": false,
+		"fixed": [],
+		"limits": {
+			"x0_0_*": [
+				325.0,
+				378.5
+			],
+			"separation_0_*": [
+				0.0,
+				20.0
+			],
+			"σ0_0_*": [
+				0.0,
+				5.0
+			],
+			"σ1_0_*": [
+				0.0,
+				5.0
+			],
+			"totalarea_0_0": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_0": [
+				0.0,
+				1.0
+			],
+			"slope_0_0": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_0": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_1": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_1": [
+				0.0,
+				1.0
+			],
+			"slope_0_1": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_1": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_2": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_2": [
+				0.0,
+				1.0
+			],
+			"slope_0_2": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_2": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_3": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_3": [
+				0.0,
+				1.0
+			],
+			"slope_0_3": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_3": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_4": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_4": [
+				0.0,
+				1.0
+			],
+			"slope_0_4": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_4": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_5": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_5": [
+				0.0,
+				1.0
+			],
+			"slope_0_5": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_5": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_6": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_6": [
+				0.0,
+				1.0
+			],
+			"slope_0_6": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_6": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_7": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_7": [
+				0.0,
+				1.0
+			],
+			"slope_0_7": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_7": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_8": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_8": [
+				0.0,
+				1.0
+			],
+			"slope_0_8": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_8": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_9": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_9": [
+				0.0,
+				1.0
+			],
+			"slope_0_9": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_9": [
+				0.0,
+				Infinity
+			]
+		},
+		"errors": {
+			"x0_0_*": 0.0,
+			"separation_0_*": 0.0,
+			"σ0_0_*": 0.0,
+			"σ1_0_*": 0.0,
+			"totalarea_0_0": 0.0,
+			"ratio_0_0": 0.0,
+			"slope_0_0": 0.0,
+			"offset_0_0": 0.0,
+			"totalarea_0_1": 0.0,
+			"ratio_0_1": 0.0,
+			"slope_0_1": 0.0,
+			"offset_0_1": 0.0,
+			"totalarea_0_2": 0.0,
+			"ratio_0_2": 0.0,
+			"slope_0_2": 0.0,
+			"offset_0_2": 0.0,
+			"totalarea_0_3": 0.0,
+			"ratio_0_3": 0.0,
+			"slope_0_3": 0.0,
+			"offset_0_3": 0.0,
+			"totalarea_0_4": 0.0,
+			"ratio_0_4": 0.0,
+			"slope_0_4": 0.0,
+			"offset_0_4": 0.0,
+			"totalarea_0_5": 0.0,
+			"ratio_0_5": 0.0,
+			"slope_0_5": 0.0,
+			"offset_0_5": 0.0,
+			"totalarea_0_6": 0.0,
+			"ratio_0_6": 0.0,
+			"slope_0_6": 0.0,
+			"offset_0_6": 0.0,
+			"totalarea_0_7": 0.0,
+			"ratio_0_7": 0.0,
+			"slope_0_7": 0.0,
+			"offset_0_7": 0.0,
+			"totalarea_0_8": 0.0,
+			"ratio_0_8": 0.0,
+			"slope_0_8": 0.0,
+			"offset_0_8": 0.0,
+			"totalarea_0_9": 0.0,
+			"ratio_0_9": 0.0,
+			"slope_0_9": 0.0,
+			"offset_0_9": 0.0
+		},
+		"covariance, correlation": {}
+	},
+	"migrad_4": {
+		"args": [],
+		"kwargs": {},
+		"algorithm": "Migrad",
+		"strategy": 1,
+		"valid_minimum": false,
+		"parameters_at_limit": false,
+		"reduced_chi2": 1.0231794294312102,
+		"fixed": [],
+		"limits": {
+			"x0_0_*": [
+				325.0,
+				378.5
+			],
+			"separation_0_*": [
+				0.0,
+				20.0
+			],
+			"σ0_0_*": [
+				0.0,
+				5.0
+			],
+			"σ1_0_*": [
+				0.0,
+				5.0
+			],
+			"totalarea_0_0": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_0": [
+				0.0,
+				1.0
+			],
+			"slope_0_0": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_0": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_1": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_1": [
+				0.0,
+				1.0
+			],
+			"slope_0_1": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_1": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_2": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_2": [
+				0.0,
+				1.0
+			],
+			"slope_0_2": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_2": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_3": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_3": [
+				0.0,
+				1.0
+			],
+			"slope_0_3": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_3": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_4": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_4": [
+				0.0,
+				1.0
+			],
+			"slope_0_4": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_4": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_5": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_5": [
+				0.0,
+				1.0
+			],
+			"slope_0_5": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_5": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_6": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_6": [
+				0.0,
+				1.0
+			],
+			"slope_0_6": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_6": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_7": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_7": [
+				0.0,
+				1.0
+			],
+			"slope_0_7": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_7": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_8": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_8": [
+				0.0,
+				1.0
+			],
+			"slope_0_8": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_8": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_9": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_9": [
+				0.0,
+				1.0
+			],
+			"slope_0_9": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_9": [
+				0.0,
+				Infinity
+			]
+		},
+		"minimum": {
+			"x0_0_*": 371.0000200643531,
+			"separation_0_*": 9.000001340298333,
+			"σ0_0_*": 1.0000017307590108,
+			"σ1_0_*": 1.0000017307590108,
+			"totalarea_0_0": 700.0009427027438,
+			"ratio_0_0": 0.5000000000000396,
+			"slope_0_0": -0.16598464248072864,
+			"offset_0_0": 103.6598488103836,
+			"totalarea_0_1": 700.0009427027438,
+			"ratio_0_1": 0.5000000000000396,
+			"slope_0_1": 5.279837579658156,
+			"offset_0_1": 92.70158000759639,
+			"totalarea_0_2": 700.0009427027438,
+			"ratio_0_2": 0.5000000000000396,
+			"slope_0_2": 0.6250862196464274,
+			"offset_0_2": 118.24914438455576,
+			"totalarea_0_3": 700.0009427027438,
+			"ratio_0_3": 0.5000000000000396,
+			"slope_0_3": 0.6748697108260862,
+			"offset_0_3": 137.85125916301564,
+			"totalarea_0_4": 700.0009427027438,
+			"ratio_0_4": 0.5000000000000396,
+			"slope_0_4": 0.8105300889756776,
+			"offset_0_4": 112.99469837085356,
+			"totalarea_0_5": 700.0009427027438,
+			"ratio_0_5": 0.5000000000000396,
+			"slope_0_5": 2.5013490574590347,
+			"offset_0_5": 140.28645031127985,
+			"totalarea_0_6": 700.0009427027438,
+			"ratio_0_6": 0.5000000000000396,
+			"slope_0_6": -0.6156482608891393,
+			"offset_0_6": 151.45649723475154,
+			"totalarea_0_7": 700.0009427027451,
+			"ratio_0_7": 0.5000000000000396,
+			"slope_0_7": -0.07815444002174533,
+			"offset_0_7": 171.9816031281593,
+			"totalarea_0_8": 700.0009427027451,
+			"ratio_0_8": 0.5000000000000396,
+			"slope_0_8": 0.7635789696300925,
+			"offset_0_8": 182.0641752466476,
+			"totalarea_0_9": 700.0009427027451,
+			"ratio_0_9": 0.5000000000000396,
+			"slope_0_9": 1.6428667572480644,
+			"offset_0_9": 161.47133261153402
+		}
+	},
+	"hesse_4": {
+		"args": [],
+		"kwargs": {},
+		"valid_minimum": false,
+		"hesse_succeeded": false,
+		"accurate_covar": false,
+		"parameters_at_limit": false,
+		"fixed": [],
+		"limits": {
+			"x0_0_*": [
+				325.0,
+				378.5
+			],
+			"separation_0_*": [
+				0.0,
+				20.0
+			],
+			"σ0_0_*": [
+				0.0,
+				5.0
+			],
+			"σ1_0_*": [
+				0.0,
+				5.0
+			],
+			"totalarea_0_0": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_0": [
+				0.0,
+				1.0
+			],
+			"slope_0_0": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_0": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_1": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_1": [
+				0.0,
+				1.0
+			],
+			"slope_0_1": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_1": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_2": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_2": [
+				0.0,
+				1.0
+			],
+			"slope_0_2": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_2": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_3": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_3": [
+				0.0,
+				1.0
+			],
+			"slope_0_3": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_3": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_4": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_4": [
+				0.0,
+				1.0
+			],
+			"slope_0_4": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_4": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_5": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_5": [
+				0.0,
+				1.0
+			],
+			"slope_0_5": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_5": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_6": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_6": [
+				0.0,
+				1.0
+			],
+			"slope_0_6": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_6": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_7": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_7": [
+				0.0,
+				1.0
+			],
+			"slope_0_7": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_7": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_8": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_8": [
+				0.0,
+				1.0
+			],
+			"slope_0_8": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_8": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_9": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_9": [
+				0.0,
+				1.0
+			],
+			"slope_0_9": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_9": [
+				0.0,
+				Infinity
+			]
+		},
+		"errors": {
+			"x0_0_*": 0.0,
+			"separation_0_*": 0.0,
+			"σ0_0_*": 0.0,
+			"σ1_0_*": 0.0,
+			"totalarea_0_0": 0.0,
+			"ratio_0_0": 0.0,
+			"slope_0_0": 0.0,
+			"offset_0_0": 0.0,
+			"totalarea_0_1": 0.0,
+			"ratio_0_1": 0.0,
+			"slope_0_1": 0.0,
+			"offset_0_1": 0.0,
+			"totalarea_0_2": 0.0,
+			"ratio_0_2": 0.0,
+			"slope_0_2": 0.0,
+			"offset_0_2": 0.0,
+			"totalarea_0_3": 0.0,
+			"ratio_0_3": 0.0,
+			"slope_0_3": 0.0,
+			"offset_0_3": 0.0,
+			"totalarea_0_4": 0.0,
+			"ratio_0_4": 0.0,
+			"slope_0_4": 0.0,
+			"offset_0_4": 0.0,
+			"totalarea_0_5": 0.0,
+			"ratio_0_5": 0.0,
+			"slope_0_5": 0.0,
+			"offset_0_5": 0.0,
+			"totalarea_0_6": 0.0,
+			"ratio_0_6": 0.0,
+			"slope_0_6": 0.0,
+			"offset_0_6": 0.0,
+			"totalarea_0_7": 0.0,
+			"ratio_0_7": 0.0,
+			"slope_0_7": 0.0,
+			"offset_0_7": 0.0,
+			"totalarea_0_8": 0.0,
+			"ratio_0_8": 0.0,
+			"slope_0_8": 0.0,
+			"offset_0_8": 0.0,
+			"totalarea_0_9": 0.0,
+			"ratio_0_9": 0.0,
+			"slope_0_9": 0.0,
+			"offset_0_9": 0.0
+		},
+		"covariance, correlation": {}
+	},
+	"migrad_5": {
+		"args": [],
+		"kwargs": {},
+		"algorithm": "Migrad",
+		"strategy": 1,
+		"valid_minimum": false,
+		"parameters_at_limit": false,
+		"reduced_chi2": 1.0231794293737657,
+		"fixed": [],
+		"limits": {
+			"x0_0_*": [
+				325.0,
+				378.5
+			],
+			"separation_0_*": [
+				0.0,
+				20.0
+			],
+			"σ0_0_*": [
+				0.0,
+				5.0
+			],
+			"σ1_0_*": [
+				0.0,
+				5.0
+			],
+			"totalarea_0_0": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_0": [
+				0.0,
+				1.0
+			],
+			"slope_0_0": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_0": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_1": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_1": [
+				0.0,
+				1.0
+			],
+			"slope_0_1": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_1": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_2": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_2": [
+				0.0,
+				1.0
+			],
+			"slope_0_2": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_2": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_3": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_3": [
+				0.0,
+				1.0
+			],
+			"slope_0_3": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_3": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_4": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_4": [
+				0.0,
+				1.0
+			],
+			"slope_0_4": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_4": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_5": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_5": [
+				0.0,
+				1.0
+			],
+			"slope_0_5": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_5": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_6": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_6": [
+				0.0,
+				1.0
+			],
+			"slope_0_6": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_6": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_7": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_7": [
+				0.0,
+				1.0
+			],
+			"slope_0_7": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_7": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_8": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_8": [
+				0.0,
+				1.0
+			],
+			"slope_0_8": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_8": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_9": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_9": [
+				0.0,
+				1.0
+			],
+			"slope_0_9": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_9": [
+				0.0,
+				Infinity
+			]
+		},
+		"minimum": {
+			"x0_0_*": 371.0000200643531,
+			"separation_0_*": 9.000001340298333,
+			"σ0_0_*": 1.0000017307590108,
+			"σ1_0_*": 1.0000017307590108,
+			"totalarea_0_0": 700.0009427027438,
+			"ratio_0_0": 0.5000000000000396,
+			"slope_0_0": -0.16598397619989627,
+			"offset_0_0": 103.65984047247004,
+			"totalarea_0_1": 700.0009427027438,
+			"ratio_0_1": 0.5000000000000396,
+			"slope_0_1": 5.279837572046139,
+			"offset_0_1": 92.70168519458032,
+			"totalarea_0_2": 700.0009427027438,
+			"ratio_0_2": 0.5000000000000396,
+			"slope_0_2": 0.6250838191227197,
+			"offset_0_2": 118.24914556269357,
+			"totalarea_0_3": 700.0009427027438,
+			"ratio_0_3": 0.5000000000000396,
+			"slope_0_3": 0.6748931626723558,
+			"offset_0_3": 137.85111132349948,
+			"totalarea_0_4": 700.0009427027438,
+			"ratio_0_4": 0.5000000000000396,
+			"slope_0_4": 0.8105286347006418,
+			"offset_0_4": 112.99470853589534,
+			"totalarea_0_5": 700.0009427027438,
+			"ratio_0_5": 0.5000000000000396,
+			"slope_0_5": 2.5013182765808892,
+			"offset_0_5": 140.28679810938502,
+			"totalarea_0_6": 700.0009427027438,
+			"ratio_0_6": 0.5000000000000396,
+			"slope_0_6": -0.6156520231014502,
+			"offset_0_6": 151.45651300082497,
+			"totalarea_0_7": 700.0009427027451,
+			"ratio_0_7": 0.5000000000000396,
+			"slope_0_7": -0.07813853220276765,
+			"offset_0_7": 171.98139014090083,
+			"totalarea_0_8": 700.0009427027451,
+			"ratio_0_8": 0.5000000000000396,
+			"slope_0_8": 0.7635711801306966,
+			"offset_0_8": 182.06429833863328,
+			"totalarea_0_9": 700.0009427027451,
+			"ratio_0_9": 0.5000000000000396,
+			"slope_0_9": 1.642859307064137,
+			"offset_0_9": 161.47138083428436
+		}
+	},
+	"hesse_5": {
+		"args": [],
+		"kwargs": {},
+		"valid_minimum": false,
+		"hesse_succeeded": false,
+		"accurate_covar": false,
+		"parameters_at_limit": false,
+		"fixed": [],
+		"limits": {
+			"x0_0_*": [
+				325.0,
+				378.5
+			],
+			"separation_0_*": [
+				0.0,
+				20.0
+			],
+			"σ0_0_*": [
+				0.0,
+				5.0
+			],
+			"σ1_0_*": [
+				0.0,
+				5.0
+			],
+			"totalarea_0_0": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_0": [
+				0.0,
+				1.0
+			],
+			"slope_0_0": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_0": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_1": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_1": [
+				0.0,
+				1.0
+			],
+			"slope_0_1": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_1": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_2": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_2": [
+				0.0,
+				1.0
+			],
+			"slope_0_2": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_2": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_3": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_3": [
+				0.0,
+				1.0
+			],
+			"slope_0_3": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_3": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_4": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_4": [
+				0.0,
+				1.0
+			],
+			"slope_0_4": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_4": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_5": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_5": [
+				0.0,
+				1.0
+			],
+			"slope_0_5": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_5": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_6": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_6": [
+				0.0,
+				1.0
+			],
+			"slope_0_6": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_6": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_7": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_7": [
+				0.0,
+				1.0
+			],
+			"slope_0_7": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_7": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_8": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_8": [
+				0.0,
+				1.0
+			],
+			"slope_0_8": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_8": [
+				0.0,
+				Infinity
+			],
+			"totalarea_0_9": [
+				0.0,
+				Infinity
+			],
+			"ratio_0_9": [
+				0.0,
+				1.0
+			],
+			"slope_0_9": [
+				-Infinity,
+				Infinity
+			],
+			"offset_0_9": [
+				0.0,
+				Infinity
+			]
+		},
+		"errors": {
+			"x0_0_*": 0.0,
+			"separation_0_*": 0.0,
+			"σ0_0_*": 0.0,
+			"σ1_0_*": 0.0,
+			"totalarea_0_0": 0.0,
+			"ratio_0_0": 0.0,
+			"slope_0_0": 0.0,
+			"offset_0_0": 0.0,
+			"totalarea_0_1": 0.0,
+			"ratio_0_1": 0.0,
+			"slope_0_1": 0.0,
+			"offset_0_1": 0.0,
+			"totalarea_0_2": 0.0,
+			"ratio_0_2": 0.0,
+			"slope_0_2": 0.0,
+			"offset_0_2": 0.0,
+			"totalarea_0_3": 0.0,
+			"ratio_0_3": 0.0,
+			"slope_0_3": 0.0,
+			"offset_0_3": 0.0,
+			"totalarea_0_4": 0.0,
+			"ratio_0_4": 0.0,
+			"slope_0_4": 0.0,
+			"offset_0_4": 0.0,
+			"totalarea_0_5": 0.0,
+			"ratio_0_5": 0.0,
+			"slope_0_5": 0.0,
+			"offset_0_5": 0.0,
+			"totalarea_0_6": 0.0,
+			"ratio_0_6": 0.0,
+			"slope_0_6": 0.0,
+			"offset_0_6": 0.0,
+			"totalarea_0_7": 0.0,
+			"ratio_0_7": 0.0,
+			"slope_0_7": 0.0,
+			"offset_0_7": 0.0,
+			"totalarea_0_8": 0.0,
+			"ratio_0_8": 0.0,
+			"slope_0_8": 0.0,
+			"offset_0_8": 0.0,
+			"totalarea_0_9": 0.0,
+			"ratio_0_9": 0.0,
+			"slope_0_9": 0.0,
+			"offset_0_9": 0.0
+		},
+		"covariance, correlation": {}
+	}
+}

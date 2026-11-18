@@ -1,0 +1,57 @@
+# This is an emptly config for multifit.
+#
+# Find more information about YAML syntax here:
+# <https://yamline.com/tutorial/>
+
+---
+data:
+  directory: /home/jsh/experiments/GanilE706rdds/data/Mo108/singles/ # path/to/your/files/
+  files:
+    - 0030um.npy # data_file_1  # These can be in ascii or npy format
+    - 0052um.npy # data_file_2
+    - 0089um.npy # ...
+    - 0155um.npy
+    - 0264um.npy
+    - 0450um.npy
+    - 0780um.npy
+    - 1170um.npy
+    - 1776um.npy
+    - 2650um.npy
+  column: 1 # which column of the data file contains the counts, numbered from 0
+  delimiter: ',' # column delimiter in the data file
+  bin_width: 0.5 # bin width of the data
+model:
+  module: ./model_cdf_examples.py  # path/to/python/file.py
+  function: peaks # name of function to fit
+  spectrum_params: []
+  peak_params:
+    - separation     # parameters with the same value for all peaks of the same
+    - σ0             # number, across spectra.
+    - σ1
+    - x0
+  kwargs:
+    xmin: &xmin 325.0   # additional keyword arguments of the model function wich
+    xmax: &xmax 378.5   # should not be included in the fit. Often includes the fit range
+  number_of_peaks: 1 # how many peaks to fit. Each will be fitted by the given function.
+fit:
+  range: &range [[*xmin, 330], [340, *xmax]] # limits of the fit
+  parameter_ranges:
+    x0: *range   # Ranges within which each parameter is allowed
+    separation: [0, 20]
+    σ0: [0, 5]
+    σ1: [0, 5]
+    totalarea: [0, null]
+    ratio: [0, 1]
+    slope: [null, null]
+    offset: [0, null]
+  initial_values:
+    x0: 371.0          # Initial value for each parameter
+    separation: 9.0
+    σ0: 1.0
+    σ1: 1.0
+    totalarea: 700
+    ratio: 0.5
+    slope: 0.0
+    offset: 50.0
+...
+

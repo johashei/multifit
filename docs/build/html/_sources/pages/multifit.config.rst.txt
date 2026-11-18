@@ -1,0 +1,3 @@
+.. automodule:: multifit.config
+   :members:
+   :show-inheritance:

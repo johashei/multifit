@@ -1,4 +1,4 @@
-"""multifit: simultaneous fitting to multiple data sets.
+__license__ = """multifit: simultaneous fitting to multiple data sets.
 
 Copyright (C) 2026 Johannes Sørby Heines
 

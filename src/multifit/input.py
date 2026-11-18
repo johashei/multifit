@@ -1,8 +1,7 @@
-"""multifit: simultaneous fitting to multiple data sets.
-Module 'input': Structure and loading of input files.
+"""Structure and loading of input files.
+"""
 
-
-Copyright (C) 2026 Johannes Sørby Heines
+__license__ = """Copyright (C) 2026 Johannes Sørby Heines
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+
 from contextlib import chdir
 from functools import partial
 from pathlib import Path
@@ -57,15 +57,15 @@ class DataConfig:
 
     Attributes
     ----------
-    directory: Path
+    directory : path
         Directory from which to read the data files.
-    files: list[Path]
+    files : list of path
         List of data files relative to `directory`
     bin_width: float
         Bin width of the data histograms.
-    column: int
+    column : int
         Column of the data file containing the histogram content.
-    delimiter:
+    delimiter
         Column delimiter for data stored in a text file.
     """
     directory: Path = field(converter=Path)
@@ -86,18 +86,18 @@ class ModelConfig:
 
     Attributes
     ----------
-    module: Path
+    module : path
         Path to the python module where the model function is defined.
-    function: str
+    function : str
         Name of the function defining the model.
-    number_of_peaks: int
+    number_of_peaks : int
         Number of peak structures to model for each spectrum.
-    spectrum_params: list[str]
+    spectrum_params : list of str
         Name of parameters to be shared by all peaks in a spectrum.
-    peak_params: list[str]
+    peak_params : list of str
         Name of parameters to be shared by all instances of the same
         peak across spectra.
-    kwargs: dict
+    kwargs : dict
         Additional keyword arguments required by the function.
     """
     module: Path = field(converter=Path)
@@ -114,12 +114,12 @@ class FitConfig:
 
     Attributes
     ----------
-    range: tuple | list[tuple]
+    range : tuple or list of tuple
         Range of data to fit. A single tuple is read as a range.
         A list of tuples is read as a union of ranges.
-    parameter_ranges: dict[tuple]
+    parameter_ranges : dict of tuple
         Allowed range for each fit parameter.
-    initial_values:
+    initial_values
         Initial values for each fit parameter.
     """
     range: tuple | list[tuple]
@@ -138,11 +138,11 @@ class Config:
 
     Attributes
     ----------
-    data: DataConfig
+    data : DataConfig
         Configuration for reading the data.
-    model: ModelConfig
+    model : ModelConfig
         Configuration of the model.
-    fit: FitConfig
+    fit : FitConfig
         Configuration of the fit.
     """
     data: DataConfig
@@ -155,11 +155,11 @@ class Config:
 
         Arguments
         ---------
-        file: TextIO | Path | str
+        file : TextIO or path or str
             Configuration file to read.
-        error_if_incomplete: bool
+        error_if_incomplete : bool, default True
             If true, raise an error when the configuration file is
-            incomplete. If false, issue a warning. (default True)
+            incomplete. If false, issue a warning.
         """
         if isinstance(file, TextIO):
             config = yaml.load(file, yaml.CSafeLoader)
@@ -209,23 +209,22 @@ def fetch_data(
 
     WARNING: This function will be depracated in the future.
 
-    Arguments
-    ---------
-    config: DataConfig
+    Parameters
+    ----------
+    config : DataConfig
         Data configuration object.
-    cls
-        Class to read the data into, possible values are `Spectrum` and
-        `CoincidenceMatrix`.
+    cls : {Spectrum, CoincidenceMatrix}
+        Class to read the data into.
     sorting_key
         key to use when sorting the data object list. May be a constant
         or a callable taking the file name as a positional argument.
-    npy: bool
+    npy : bool
         If true, try to read the data from a .npy file. If such a file
         doesn't exist, generate it. (default True)
 
     Returns
     -------
-    list[Spectrum | CoincidenceMatrix]
+    list of `cls`
         Sorted list of data objects read from each file.
     """
     if callable(sorting_key):
@@ -263,11 +262,11 @@ def fetch_data(
 def import_cdf(path: Path, function: str) -> callable:
     """Import a function from an arbitrary module.
 
-    Arguments
-    ---------
-    path: Path
+    Parameters
+    ----------
+    path : path
         Path to the python module containing the function.
-    function: str
+    function : str
         Name of the function to import.
 
     Returns

@@ -1,0 +1,3 @@
+.. automodule:: multifit.model
+   :members:
+   :show-inheritance:

@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>multifit command line interface &mdash; multifit  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Writing density functions" href="../guides/cdf.html" />
+    <link rel="prev" title="Usage" href="../usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            multifit
+              <img src="../_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../usage.html">Usage</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../usage.html#command-line-interface">Command line interface</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><cite>multifit</cite> command line interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#command-config">Command <cite>config</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#command-plot">Command <cite>plot</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#command-fit">Command <cite>fit</cite></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#guides">Guides</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">multifit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../usage.html">Usage</a></li>
+      <li class="breadcrumb-item active"><cite>multifit</cite> command line interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cli/commands.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="multifit-command-line-interface">
+<span id="module-multifit.cli"></span><h1><cite>multifit</cite> command line interface<a class="headerlink" href="#multifit-command-line-interface" title="Link to this heading"></a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Usage<span class="colon">:</span></dt>
+<dd class="field-odd"><p>multifit [–version] [–copying] [–help] COMMAND [ARGS…]</p>
+</dd>
+</dl>
+<dl>
+<dt>Options:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Print the help screen for the given command and exit.</p>
+</dd>
+<dt><kbd><span class="option">--version</span></kbd></dt>
+<dd><p>Print version number and exit.</p>
+</dd>
+<dt><kbd><span class="option">--copying</span></kbd></dt>
+<dd><p>Print copyright notice and exit.</p>
+</dd>
+</dl>
+</dd>
+<dt>List of commands:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">config<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Generate a new config file.</p>
+</dd>
+<dt class="field-even">fit<span class="colon">:</span></dt>
+<dd class="field-even"><p>Fit a set of spectra.</p>
+</dd>
+<dt class="field-odd">gate<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Run a GUI for gating on coincidence spectra.</p>
+</dd>
+<dt class="field-even">plot<span class="colon">:</span></dt>
+<dd class="field-even"><p>Plot a set of spectra, optionally including a fit result.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>See multifit help COMMAND for more information on a specific command.</p>
+<p>Copyright (C) 2026 Johannes Sørby Heines</p>
+</section>
+<section id="command-config">
+<span id="module-multifit.config"></span><h1>Command <cite>config</cite><a class="headerlink" href="#command-config" title="Link to this heading"></a></h1>
+<p>Generate a <cite>multifit</cite> configuration file.</p>
+<p>Usage: multifit config</p>
+<blockquote>
+<div><dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Print this help screen and exit.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Copyright (C) 2026 Johannes Sørby Heines</p>
+</section>
+<section id="command-plot">
+<span id="module-multifit.plot"></span><h1>Command <cite>plot</cite><a class="headerlink" href="#command-plot" title="Link to this heading"></a></h1>
+<p>Plot a dataset and (optionally) a fit result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Usage<span class="colon">:</span></dt>
+<dd class="field-odd"><p>multifit plot CONFIG [LOG] [–color MAP [–import MODULE]]
+[–xlabel LABEL] [–ylabel LABEL] [–callnumber N]
+[–background INDEX] [–no-normalize]</p>
+</dd>
+</dl>
+<dl>
+<dt>Positional arguments:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">CONFIG<span class="colon">:</span></dt>
+<dd class="field-odd"><p>yaml configuration file.</p>
+</dd>
+<dt class="field-even">LOG<span class="colon">:</span></dt>
+<dd class="field-even"><p>json log file generated by multifit fit.</p>
+</dd>
+</dl>
+</dd>
+<dt>Options:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Print this help screen and exit.</p>
+</dd>
+<dt><kbd><span class="option">-x</span>, <span class="option">--xlabel <var>LABEL</var></span></kbd></dt>
+<dd><p>Label on the x axis. [default: value]</p>
+</dd>
+<dt><kbd><span class="option">-y</span>, <span class="option">--ylabel <var>LABEL</var></span></kbd></dt>
+<dd><p>Label on the y axis. [default: counts per bin]</p>
+</dd>
+<dt><kbd><span class="option">-c</span>, <span class="option">--color <var>MAP</var></span></kbd></dt>
+<dd><p>Name of the colormap to use. [default: viridis]</p>
+</dd>
+<dt><kbd><span class="option">-i</span>, <span class="option">--import <var>MODULE</var></span></kbd></dt>
+<dd><p>Use a third party colormap from MODULE.</p>
+</dd>
+<dt><kbd><span class="option">--no-normalize</span></kbd></dt>
+<dd><p>Don’t nomralize the histogram.</p>
+</dd>
+</dl>
+</dd>
+<dt>Fit selection options (only relevant if LOG is provided):</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--callnumber <var>N</var></span></kbd></dt>
+<dd><p>Number of the migrad iteration to plot. Starts
+at 1, supports reverse indexing. [default: -1]</p>
+</dd>
+<dt><kbd><span class="option">-b</span>, <span class="option">--background <var>INDEX</var></span></kbd></dt>
+<dd><p>Use this component of the model cdf as the
+background when plotting.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Copyright (C) 2026 Johannes Sørby Heines</p>
+</section>
+<section id="command-fit">
+<span id="module-multifit.fit"></span><h1>Command <cite>fit</cite><a class="headerlink" href="#command-fit" title="Link to this heading"></a></h1>
+<p>Fit a density to multiple histograms simulatneously.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Usage<span class="colon">:</span></dt>
+<dd class="field-odd"><p>multifit fit CONFIG LOG [-v] [-r | -a] [–minos PARAM…] [options]</p>
+</dd>
+</dl>
+<dl>
+<dt>Positional arguments:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">CONFIG<span class="colon">:</span></dt>
+<dd class="field-odd"><p>yaml configuration file.</p>
+</dd>
+<dt class="field-even">LOG<span class="colon">:</span></dt>
+<dd class="field-even"><p>json log file. By default, raises an error if
+the file already exists.</p>
+</dd>
+</dl>
+</dd>
+<dt>Options:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Show this help screen and exit.</p>
+</dd>
+<dt><kbd><span class="option">-v</span>, <span class="option">--verbose</span></kbd></dt>
+<dd><p>Print runtime information.</p>
+</dd>
+<dt><kbd><span class="option">-r</span>, <span class="option">--recreate</span></kbd></dt>
+<dd><p>Replace an existing log file.</p>
+</dd>
+<dt><kbd><span class="option">-a</span>, <span class="option">--append</span></kbd></dt>
+<dd><p>Append to an existing log file.</p>
+</dd>
+<dt><kbd><span class="option">--tries <var>N</var></span></kbd></dt>
+<dd><p>Number of times to run the migrad minimiser
+before giving up. [default: 5]</p>
+</dd>
+<dt><kbd><span class="option">--strategy <var>N</var></span></kbd></dt>
+<dd><p>Strategy to use for the minimisation. Choices are
+0 (fast), 1,  2 (careful). See the iminuit
+documentation for details. [default: 1]</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>–minos PARAM…    Calculate minos errors for the given parameters,</dt><dd><p>or use ‘all’ for all parameters (not usually
+necessary). This can take several minutes.</p>
+</dd>
+</dl>
+<dl class="option-list">
+<dt><kbd><span class="option">--retries <var>N</var></span></kbd></dt>
+<dd><p>Rerun migrad this number of times after a minimum
+has been found. [default: 0]</p>
+</dd>
+<dt><kbd><span class="option">--no-delete</span></kbd></dt>
+<dd><p>Keep the log file after an exception. The state
+of this file is undefined.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Copyright (C) 2026 Johannes Sørby Heines</p>
+</section>
+<dl class="field-list simple" id="module-multifit.gate">
+<dt class="field-odd">Usage<span class="colon">:</span></dt>
+<dd class="field-odd"><p>multifit gate CONFIG [options]</p>
+</dd>
+</dl>
+<dl>
+<dt>General options:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Print this help screen and exit.</p>
+</dd>
+<dt><kbd><span class="option">-e</span>, <span class="option">--export <var>PATH</var></span></kbd></dt>
+<dd><p>Export location for gated spectra. If not given,
+uses the location of the data files. This can
+be changed before each export.</p>
+</dd>
+</dl>
+</dd>
+<dt>Plotting options:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">-c</span>, <span class="option">--color <var>MAP</var></span></kbd></dt>
+<dd><p>Name of the colormap to use. [default: cmc.lajolla_r]</p>
+</dd>
+<dt><kbd><span class="option">-x</span>, <span class="option">--xlabel <var>LABEL</var></span></kbd></dt>
+<dd><p>Label for the x axis. [default: value]</p>
+</dd>
+<dt><kbd><span class="option">-y</span>, <span class="option">--ylabel <var>LABEL</var></span></kbd></dt>
+<dd><p>Label for the y axis. [default: counts per bin]</p>
+</dd>
+<dt><kbd><span class="option">-g</span>, <span class="option">--gridsep <var>VALUE</var></span></kbd></dt>
+<dd><p>Fixed separation of the gridlines on the y axis.</p>
+</dd>
+</dl>
+</dd>
+<dt>Debugging options:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--printargs</span></kbd></dt>
+<dd><p>Print arguments and exit.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Copyright (C) 2026 Johannes Sørby Heines</p>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../guides/cdf.html" class="btn btn-neutral float-right" title="Writing density functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, J. S. Heines.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

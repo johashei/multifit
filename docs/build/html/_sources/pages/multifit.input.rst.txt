@@ -1,0 +1,3 @@
+.. automodule:: multifit.input
+   :members:
+   :show-inheritance:

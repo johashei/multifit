@@ -1,4 +1,4 @@
-"""multifit: simultaneous fitting to multiple data sets.
+__license__ = """multifit: simultaneous fitting to multiple data sets.
 
 Copyright (C) 2026 Johannes Sørby Heines
 
@@ -223,19 +223,19 @@ class Model:
         Arguments
         ---------
         string: str
-            On the form <name> or <name>_<peak>_<spectrum>, where
-            <peak> and <spectrum> can be numbers or wildcard '*'.
-            The input <name> is equivalent to <name>_*_*
+            On the form ``<name>`` or ``<name>_<peak>_<spectrum>``,
+            where ``<peak>`` and ``<spectrum>`` can be numbers or
+            the wildcard ``*``. The input ``<name>`` is equivalent to
+            ``<name>_*_*``.
 
         Returns
         -------
         list
             A list corresponding to the input string, as
-            [
-                name: str,
-                peak: int | slice(None),
-                spectrum: int | slice(None)
-                ]
+            ``[name: str,
+            peak: int | slice(None),
+            spectrum: int | slice(None)]``
+
         """
         elements = string.split('_')
         if '' in elements or len(elements) not in (1, 3):
