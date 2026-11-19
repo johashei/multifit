@@ -1,2 +1,2 @@
-lumache
 sphinx_rtd_theme
+multifit

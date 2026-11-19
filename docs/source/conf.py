@@ -9,8 +9,8 @@
 project = 'multifit'
 copyright = '2026, J. S. Heines'
 author = 'J. S. Heines'
-#from multifit.__about__ import __version__
-#version = __version__
+from multifit.__about__ import __version__
+version = __version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
