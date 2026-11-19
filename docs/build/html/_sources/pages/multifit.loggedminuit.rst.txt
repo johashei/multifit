@@ -1,0 +1,3 @@
+.. automodule:: multifit.loggedminuit
+   :members:
+   :show-inheritance:

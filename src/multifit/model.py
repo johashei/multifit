@@ -1,4 +1,4 @@
-"""multifit: simultaneous fitting to multiple data sets.
+__license__ = """multifit: simultaneous fitting to multiple data sets.
 
 Copyright (C) 2026 Johannes Sørby Heines
 
@@ -28,28 +28,53 @@ from .input import ModelConfig, import_cdf
 class Model:
     """ Manage independent and shared parameters.
 
-    Public attributes:
-    independent_params: set -- parameters which are not shared
-    unique_params: set -- parameters which are shared accross all peaks
-        and spectra.
-    spectrum_params: set -- parameters which are shared between peaks
-        within, but not accross, spectra.
-    peak_params: set -- parameters which are shared accross spectra, but
-        are different for each peak number.
+    Attributes
+    ----------
+    cdf: callable
+        Model describing a peak structure
+    number_of_peaks: int
+        Number pf peak structures to model
+    independent_params: set
+        parameters which are not shared
+    unique_params: set
+        parameters which are shared accross all peaks and spectra.
+    spectrum_params: set
+        parameters which are shared between peaks within, but not
+        accross, spectra.
+    peak_params: set
+        parameters which are shared accross spectra, but are different
+        for each peak number.
+
+    Methods
+    -------
+    from_config(ModelConfig: config) -> Self
+        Build a class instance from a ModelConfig instance.
+    make_cdf(peak_number, spectrum_number) -> callable
+        Define the cdf with the signature needed by iminuit.
+    sum_cdfs(spectrum_number) -> callable
+        Combine all cdfs in a spectrum to one function.
+    match_param(string, peak_numbers, spectrum_numbers) -> list[str]
+        List parameters matching the arguments.
+    expand_and_list(string) -> list:
+        Expand a parameter name as a list [name, peak, spectrum].
     """
     def __init__(self, cdf, *, spectrum_params, peak_params, number_of_peaks):
         """Constructor for the Model class.
 
-        Keyword arguments:
-        cdf -- Cumulative density function for the model distribution.
+        Arguments
+        -----------------
+        cdf: cllable
+            Cumulative density function for the model distribution.
             Of the form f(x, par0, par1, ...)
 
-        Keyword only arguments:
-        spectrum_params -- Parameters to be shared by all peaks using
-            this model within a single spectrum. Must match parameter
-            names in cdf.
-        peak_params -- Parameters to be shared by each peak of the same
-            number accross all spectra. Must match parameter names in cdf.
+        Keyword only arguments
+        ----------------------
+        spectrum_params
+            Parameters to be shared by all peaks using this model within
+            a single spectrum. Must match parameter names in cdf.
+        peak_params
+            Parameters to be shared by each peak of the same number
+            accross all spectra. Must match parameter names in cdf.
         """
         self.cdf = cdf
         self.number_of_peaks = number_of_peaks
@@ -76,13 +101,10 @@ class Model:
         self.unique_params = spectrum_params & peak_params
         self.spectrum_params = spectrum_params - self.unique_params
         self.peak_params = peak_params - self.unique_params
-#        print(f"{self.independent_params = }")
-#        print(f"{self.unique_params = }")
-#        print(f"{self.peak_params = }")
-#        print(f"{self.spectrum_params = }")
 
     @classmethod
     def from_config(cls, config: ModelConfig) -> Self:
+        """Build a class instance from a ModelConfig instance."""
         return cls(
             _sum_output(_set_kwargs(
                 import_cdf(config.module, config.function),
@@ -103,11 +125,20 @@ class Model:
         Define a function to be used by iminuit.cost.ExtendedBinnedNLL,
         with a signature ensuring the correct sharing of parameters.
 
-        Arguments:
-        peak_number -- number identifying a specific peak. Peaks with
-            the same peak_number will share peak_params.
-        spectrum_number -- number identifying a specific spectrum. Peaks
-            with the same spectrum number will share spectrum_params.
+        Arguments
+        ---------
+        peak_number: int
+            number identifying a specific peak. Peaks with the same
+            peak_number will share peak_params.
+        spectrum_number: int
+            number identifying a specific spectrum. Peaks with the same
+            spectrum number will share spectrum_params.
+
+        Returns
+        -------
+        callable
+            Cumulative distribution function with parameter names
+            specifying peak and spectrum numbers.
         """
         replacements = {}
         for param in chain(
@@ -143,14 +174,22 @@ class Model:
     def match_param(self, string, peak_numbers, spectrum_numbers) -> list[str]:
         """List parameters matching string given peak and spectrum numbers.
 
-        Arguments:
-        string -- see expand_and_list()
-        peak_numbers -- numbers of the peaks against which string is matched.
-        spectrum_numbers -- numbers of the spectra against which string is matched.
+        Arguments
+        ---------
+        string
+            On the form <name> or <name>_<peak>_<spectrum>, where
+            <peak> and <spectrum> can be numbers or wildcard '*'.
+            The input <name> is equivalent to <name>_*_*.
+        peak_numbers
+            numbers of the peaks against which string is matched.
+        spectrum_numbers
+            numbers of the spectra against which string is matched.
 
-        Returns:
-        A list of valid parameter names to the function returned by
-        make_integral for each combination of peak and spectrum number.
+        Returns
+        -------
+        list[str]
+            A list of valid parameter names to the function returned by
+            make_cdf for each combination of peak and spectrum number.
         """
         peak_numbers = np.atleast_1d(peak_numbers)
         spectrum_numbers = np.atleast_1d(spectrum_numbers)
@@ -181,17 +220,22 @@ class Model:
     def expand_and_list(self, string) -> list:
         """Expand a parameter name as a list [name, peak, spectrum].
 
-        Argument:
-        string -- On the form <name> or <name>_<peak>_<spectrum>, where
-            <peak> and <spectrum> can be numbers or wildcard '*'.
-            The input <name> is equivalent to <name>_*_*
+        Arguments
+        ---------
+        string: str
+            On the form ``<name>`` or ``<name>_<peak>_<spectrum>``,
+            where ``<peak>`` and ``<spectrum>`` can be numbers or
+            the wildcard ``*``. The input ``<name>`` is equivalent to
+            ``<name>_*_*``.
 
-        Returns:
-        A list [
-            name: str,
+        Returns
+        -------
+        list
+            A list corresponding to the input string, as
+            ``[name: str,
             peak: int | slice(None),
-            spectrum: int | slice(None) ]
-        corresponding to the input string.
+            spectrum: int | slice(None)]``
+
         """
         elements = string.split('_')
         if '' in elements or len(elements) not in (1, 3):

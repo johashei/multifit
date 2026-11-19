@@ -1,4 +1,4 @@
-"""multifit: simultaneous fitting to multiple data sets.
+__license__ = """multifit: simultaneous fitting to multiple data sets.
 
 Copyright (C) 2026 Johannes Sørby Heines
 
@@ -40,6 +40,7 @@ def all_equal(iterable: Iterable):
     return next(g, True) and not next(g, False)
 
 def magnitude(value):
+    """Return the base 10 order of magnitude of a number."""
     if value == 0:
         return 0
     return int(round(math.log10(abs(value))))

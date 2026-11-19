@@ -1,8 +1,14 @@
 #!/usr/bin/python3
 """
+================
+Command `config`
+================
+
+Generate a `multifit` configuration file.
+
 Usage: multifit config
 
-    -h --help           Print this help screen and exit.
+    -h, --help           Print this help screen and exit.
 
 Copyright (C) 2026 Johannes Sørby Heines
 """
@@ -11,7 +17,6 @@ from importlib import resources
 from docopt import docopt
 
 def main():
-    """Generate a config file"""
     args = docopt(__doc__)
 
     container = resources.files('multifit')

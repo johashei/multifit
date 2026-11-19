@@ -1,0 +1,3 @@
+.. automodule:: multifit.gate
+   :members:
+   :show-inheritance:

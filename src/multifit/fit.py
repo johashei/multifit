@@ -1,16 +1,24 @@
 #!/usr/bin/python3
 
 """
-Usage: multifit fit CONFIG LOG [-v] [-r | -a] [--minos PARAM...] [options]
+=============
+Command `fit`
+=============
 
-    CONFIG              yaml configuration file.
-    LOG                 json log file. By default, raises an error if
+Fit a density to multiple histograms simulatneously.
+
+:Usage: multifit fit CONFIG LOG [-v] [-r | -a] [--minos PARAM...] [options]
+
+Positional arguments:
+    :CONFIG:            yaml configuration file.
+    :LOG:               json log file. By default, raises an error if
                         the file already exists.
 
-    -h --help           Show this help screen and exit.
-    -v --verbose        Print runtime information.
-    -r --recreate       Replace an existing log file .
-    -a --append         Append to an existing log file.
+Options:
+    -h, --help          Show this help screen and exit.
+    -v, --verbose       Print runtime information.
+    -r, --recreate      Replace an existing log file.
+    -a, --append        Append to an existing log file.
 
     --tries N           Number of times to run the migrad minimiser
                         before giving up. [default: 5]

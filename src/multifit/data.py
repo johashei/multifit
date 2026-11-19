@@ -1,4 +1,4 @@
-"""multifit: simultaneous fitting to multiple data sets.
+__license__ = """multifit: simultaneous fitting to multiple data sets.
 
 Copyright (C) 2026 Johannes Sørby Heines
 
@@ -83,10 +83,14 @@ class Spectrum(Data):
     def truncate(self, lower_bin_edge, upper_bin_edge, inplace=False):
         """Select a range of the spectrum.
 
-        Keyword arguments:
-        lower_bin_edge -- first bin edge to include.
-        upper_bin_edge -- last bin edge to include.
-        inplace -- if True, modify the current Spectrum and return None,
+        Keyword arguments
+        -----------------
+        lower_bin_edge
+            first bin edge to include.
+        upper_bin_edge
+            last bin edge to include.
+        inplace: bool
+            if True, modify the current Spectrum and return None,
             if False create and return a new Spectrum.
         """
         idx_min = np.searchsorted(self.bin_edges, lower_bin_edge)
@@ -129,10 +133,14 @@ class CoincidenceMatrix(Data):
     def gate(self, lower: float, upper: float) -> Spectrum:
         """Return a Spectrum by gating on the coincidence matrix.
 
-        Arguments:
-        lower -- lower value of the gate
-        upper -- upper value of the gate
-        axis -- axis on which to apply the gate.
+        Arguments
+        ---------
+        lower
+            lower value of the gate
+        upper
+            upper value of the gate
+        axis
+            axis on which to apply the gate.
         """
         idx_min = np.searchsorted(self.bin_edges, lower)
         idx_max = np.searchsorted(self.bin_edges, upper)

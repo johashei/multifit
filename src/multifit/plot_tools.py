@@ -31,6 +31,7 @@ from .utils import exponent
 
 @define
 class FigureWithWidgets(plt.Figure):
+    """Matplotlib Figure class with monkeypatched widgets attribute."""
     widgets: dict[str: plt.Widget]
 
 
